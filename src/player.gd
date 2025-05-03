@@ -11,6 +11,9 @@ extends CharacterBody3D
 @export var jump_velocity := 5.0
 
 var enabled := true
+#Checks how sensitive the mouse is
+var mouse_sensitivity := 0.1
+
 
 @onready var camera : Node3D = %CameraParent
 @onready var gun : Gun = %Gun
@@ -32,8 +35,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		menu.pause = false
 	if Input.is_action_just_pressed("mouse_click") and menu.started:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		menu.pause = true
 	
 	if !enabled:
 		return
@@ -75,3 +80,8 @@ func _physics_process(delta: float) -> void:
 	# respawn when falling down
 	if self.global_position.y < -3.0:
 		self.global_position = initial_position
+
+#For the mouse sensitivity
+func _input(event):
+	if event is InputEventMouseMotion and menu.pause:
+		rotate_y(-event.relative.x * mouse_sensitivity)
