@@ -14,9 +14,8 @@ var enabled := false
 
 @onready var camera : Camera3D = %Camera
 @onready var initial_position : Vector3 = self.global_position
+@onready var menu = %Control
 
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 # look with mouse
 func _unhandled_input(event: InputEvent) -> void:
@@ -32,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if Input.is_action_just_pressed("mouse_click"):
+	if Input.is_action_just_pressed("mouse_click") and menu.started:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	if !enabled:

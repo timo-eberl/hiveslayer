@@ -85,6 +85,7 @@ environment = SubResource("Environment_gbfbk")
 unique_name_in_owner = true
 
 [node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchor_right = 0.201
 anchor_bottom = 0.379
