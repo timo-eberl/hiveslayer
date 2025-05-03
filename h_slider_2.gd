@@ -1,5 +1,5 @@
 extends HSlider
 @onready var player_node_path = %Player
 
-func _on_drag_ended(value_changed: bool) -> void:
+func _process(_delta: float) -> void:
 	player_node_path.mouse_sensitivity = value
