@@ -10,6 +10,6 @@ func _physics_process(_delta: float) -> void:
 		var bullet : RigidBody3D = bullet_scene.instantiate()
 		bullets.add_child(bullet)
 		bullet.global_transform = self.global_transform
-		bullet.apply_impulse(-self.global_transform.basis.z * 100.0)
+		bullet.apply_impulse(-self.global_transform.basis.z * 300.0)
 		
 		muzzle_flash.start_flash()
