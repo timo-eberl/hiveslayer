@@ -1,0 +1,120 @@
+[gd_scene load_steps=22 format=3 uid="uid://cvgxpv4v17ve"]
+
+[ext_resource type="Script" uid="uid://dxgcthyiuei12" path="res://Effects/Gore/gore.gd" id="1_k53ux"]
+
+[sub_resource type="Curve" id="Curve_xyw78"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.70889, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k53ux"]
+curve = SubResource("Curve_xyw78")
+
+[sub_resource type="Curve" id="Curve_8qv5j"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_mxtqr"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2.49438), 2.24337, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_va32q"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rux07"]
+curve_x = SubResource("Curve_8qv5j")
+curve_y = SubResource("Curve_mxtqr")
+curve_z = SubResource("Curve_va32q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0278"]
+lifetime_randomness = 0.38
+inherit_velocity_ratio = 0.337
+direction = Vector3(0, -1, 0)
+spread = 1.627
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_k53ux")
+scale_over_velocity_curve = SubResource("CurveXYZTexture_rux07")
+
+[sub_resource type="Gradient" id="Gradient_umx81"]
+offsets = PackedFloat32Array(0, 0.657895, 0.736842, 1)
+colors = PackedColorArray(0.637635, 0, 0.0510916, 1, 0.519911, 0, 0.0115096, 1, 0.654902, 0, 0.0156863, 0, 0.627451, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jn2gl"]
+gradient = SubResource("Gradient_umx81")
+fill = 1
+fill_from = Vector2(0.516854, 0.52809)
+fill_to = Vector2(0.803371, 0.230337)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olsn4"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_jn2gl")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_oosbs"]
+material = SubResource("StandardMaterial3D_olsn4")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jn2gl"]
+radius = 0.08
+
+[sub_resource type="Gradient" id="Gradient_xyw78"]
+offsets = PackedFloat32Array(0, 0.31746, 0.992063)
+colors = PackedColorArray(0.787542, 2.62313e-06, 5.77569e-07, 1, 0.464316, 0.046342, 0.051457, 1, 0.139233, 0.0260303, 0.0302365, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k53ux"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8qv5j"]
+color_ramp = SubResource("Gradient_xyw78")
+noise = SubResource("FastNoiseLite_k53ux")
+
+[sub_resource type="Gradient" id="Gradient_mxtqr"]
+offsets = PackedFloat32Array(0.380952, 0.777778)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_va32q"]
+seed = 4
+frequency = 0.0139
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rux07"]
+color_ramp = SubResource("Gradient_mxtqr")
+noise = SubResource("FastNoiseLite_va32q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0278"]
+albedo_texture = SubResource("NoiseTexture2D_8qv5j")
+roughness_texture = SubResource("NoiseTexture2D_rux07")
+
+[sub_resource type="SphereMesh" id="SphereMesh_umx81"]
+material = SubResource("StandardMaterial3D_p0278")
+radius = 0.05
+height = 0.1
+
+[node name="Gore" type="RigidBody3D"]
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_k53ux")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00957942, 0, 0)
+amount = 123
+lifetime = 0.57
+process_material = SubResource("ParticleProcessMaterial_p0278")
+draw_pass_1 = SubResource("QuadMesh_oosbs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_jn2gl")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1347, 0, 0, 0, 1.1347, 0, 0, 0, 1.1347, 0.000311494, 0.00252153, 0.000132561)
+visible = false
+mesh = SubResource("SphereMesh_umx81")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
