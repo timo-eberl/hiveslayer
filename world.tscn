@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
+[ext_resource type="PackedScene" uid="uid://5pcf8hgmwdrf" path="res://control.tscn" id="6_dwbse"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 
@@ -84,3 +85,5 @@ environment = SubResource("Environment_gbfbk")
 
 [node name="Bullets" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="Control" parent="." instance=ExtResource("6_dwbse")]

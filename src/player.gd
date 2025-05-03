@@ -10,14 +10,14 @@ extends CharacterBody3D
 @export var running_speed := 10.0
 @export var jump_velocity := 5.0
 
-var enabled := true
+var enabled := false
 
 @onready var camera : Node3D = %CameraParent
 @onready var initial_position : Vector3 = self.global_position
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	
 # look with mouse
 func _unhandled_input(event: InputEvent) -> void:
 	if !enabled:
