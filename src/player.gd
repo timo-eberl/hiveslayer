@@ -10,9 +10,10 @@ extends CharacterBody3D
 @export var running_speed := 10.0
 @export var jump_velocity := 5.0
 
-var enabled := false
+var enabled := true
 
 @onready var camera : Node3D = %CameraParent
+@onready var gun : Gun = %Gun
 @onready var initial_position : Vector3 = self.global_position
 
 func _ready() -> void:
@@ -54,6 +55,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		self.velocity.y = jump_velocity
+
+	# Handle shooting
+	if Input.is_action_just_pressed("shoot"):
+		gun.shoot()
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
