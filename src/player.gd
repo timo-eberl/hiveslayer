@@ -12,7 +12,7 @@ extends CharacterBody3D
 
 var enabled := true
 
-@onready var camera : Camera3D = %Camera
+@onready var camera : Node3D = %CameraParent
 @onready var initial_position : Vector3 = self.global_position
 
 func _ready() -> void:

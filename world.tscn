@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=14 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bs75ja6jb0pn7" path="res://src/bullet_spawn.gd" id="2_aqk2v"]
+[ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
@@ -48,23 +49,27 @@ shape = SubResource("CapsuleShape3D_f3sb7")
 transform = Transform3D(0.73, 0, 0, 0, 0.145, 0, 0, 0, 0.55, 0, 0.563894, -0.262149)
 mesh = SubResource("BoxMesh_gv5m4")
 
-[node name="Camera" type="Camera3D" parent="Player"]
+[node name="CameraParent" type="Node3D" parent="Player"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.573755, 0)
 
-[node name="Gun" type="Node3D" parent="Player/Camera"]
+[node name="Camera" type="Camera3D" parent="Player/CameraParent"]
+unique_name_in_owner = true
+script = ExtResource("2_dwbse")
+
+[node name="Gun" type="Node3D" parent="Player/CameraParent/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31847, -0.573755, -0.445482)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Camera/Gun"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CameraParent/Camera/Gun"]
 transform = Transform3D(0.28, 0, 0, 0, 0.21, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_036b0")
 
-[node name="BulletSpawn" type="Node3D" parent="Player/Camera/Gun"]
+[node name="BulletSpawn" type="Node3D" parent="Player/CameraParent/Camera/Gun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.524595)
 script = ExtResource("2_aqk2v")
 bullet_scene = ExtResource("3_036b0")
 
-[node name="MuzzleFlash" parent="Player/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
+[node name="MuzzleFlash" parent="Player/CameraParent/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.149647)
 
