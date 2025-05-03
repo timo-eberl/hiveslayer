@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=17 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" path="res://src/bullet_spawn.gd" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
-[ext_resource type="PackedScene" uid="uid://5pcf8hgmwdrf" path="res://control.tscn" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://dcpw2w14i7c8a" path="res://control.gd" id="6_ioo17"]
+[ext_resource type="Script" uid="uid://duu3jmo73lulu" path="res://center_container.gd" id="7_wse8f"]
+[ext_resource type="Script" uid="uid://b6kneesubmmfm" path="res://h_slider_2.gd" id="8_ic0uy"]
+[ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 
@@ -81,4 +84,80 @@ environment = SubResource("Environment_gbfbk")
 [node name="Bullets" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Control" parent="." instance=ExtResource("6_dwbse")]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.201
+anchor_bottom = 0.379
+offset_right = 3090.45
+offset_bottom = 1442.41
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("6_ioo17")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 25.0
+offset_right = 729.0
+offset_bottom = 170.0
+text = "Hivemind"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 636.0
+script = ExtResource("7_wse8f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound"
+
+[node name="HSlider" type="HSlider" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+
+[node name="Label2" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse sensitiviti"
+
+[node name="HSlider2" type="HSlider" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("8_ic0uy")
+
+[node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "return"
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+z_index = 117
+layout_mode = 0
+offset_left = 16.0
+offset_top = 66.0
+offset_right = 128.0
+offset_bottom = 179.0
+alignment = 2
+vertical = true
+script = ExtResource("9_k3n1d")
+
+[node name="Button" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[connection signal="drag_ended" from="Control/CenterContainer/VBoxContainer/HSlider2" to="Control/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/CenterContainer" method="_on_button_return"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/BoxContainer" method="_on_button_return_to_start_menu"]
+[connection signal="pressed" from="Control/BoxContainer/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/CenterContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/BoxContainer" method="_on_button_2_pressed"]
