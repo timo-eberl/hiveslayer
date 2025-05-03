@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://c2cph0tlbeqgu"]
+
+[ext_resource type="Script" uid="uid://clxaoq21kqkcl" path="res://src/destroy_timer.gd" id="1_if5cb"]
+
+[sub_resource type="Curve" id="Curve_if5cb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.8149, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a17st"]
+curve = SubResource("Curve_if5cb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u5860"]
+lifetime_randomness = 0.19
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 21.145
+initial_velocity_min = 6.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -40, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_a17st")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if5cb"]
+albedo_color = Color(0.403482, 0.312514, 0.290851, 1)
+roughness = 0.86
+
+[sub_resource type="SphereMesh" id="SphereMesh_if5cb"]
+material = SubResource("StandardMaterial3D_if5cb")
+radius = 0.2
+height = 0.4
+radial_segments = 4
+rings = 2
+
+[sub_resource type="Curve" id="Curve_a17st"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.505618), -2.48315, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u5860"]
+curve = SubResource("Curve_a17st")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxvh4"]
+lifetime_randomness = 0.38
+direction = Vector3(0, 1, 0)
+spread = 90.542
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+damping_min = 15.345
+damping_max = 21.092
+scale_min = 0.7
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_u5860")
+
+[sub_resource type="Gradient" id="Gradient_60whd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmcy6"]
+gradient = SubResource("Gradient_60whd")
+fill = 1
+fill_from = Vector2(0.5, 0.52809)
+fill_to = Vector2(0.786517, 0.191011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m2pg"]
+transparency = 1
+albedo_color = Color(0.440698, 0.331786, 0.278256, 1)
+albedo_texture = SubResource("GradientTexture2D_hmcy6")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_p2h0p"]
+material = SubResource("StandardMaterial3D_8m2pg")
+
+[node name="GroundParticles" type="Node3D"]
+script = ExtResource("1_if5cb")
+
+[node name="DirtBalls" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u5860")
+draw_pass_1 = SubResource("SphereMesh_if5cb")
+
+[node name="Dust" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.26
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lxvh4")
+draw_pass_1 = SubResource("QuadMesh_p2h0p")
