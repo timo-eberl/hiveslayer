@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var running_speed := 10.0
 @export var jump_velocity := 5.0
 
-var enabled := true
+var enabled := false
 
 @onready var camera : Camera3D = %Camera
 @onready var initial_position : Vector3 = self.global_position
