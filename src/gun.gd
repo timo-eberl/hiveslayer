@@ -12,7 +12,7 @@ func shoot() -> void:
 	var bullet : RigidBody3D = bullet_scene.instantiate()
 	bullets.add_child(bullet)
 	bullet.global_transform = bullet_spawn.global_transform
-	bullet.apply_impulse(-bullet_spawn.global_transform.basis.z * 300.0)
+	bullet.apply_impulse(-bullet_spawn.global_transform.basis.z.normalized() * 50.0)
 	
 	# screenshake
 	camera.shake(0.25, 0.01)

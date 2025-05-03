@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=17 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
-[ext_resource type="Script" path="res://src/camera_shake.gd" id="2_dwbse"]
+[ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
-[ext_resource type="Script" path="res://src/gun.gd" id="3_pkg7o"]
+[ext_resource type="Script" uid="uid://ck0uagqrc1kmw" path="res://src/gun.gd" id="3_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
 [ext_resource type="Script" uid="uid://dcpw2w14i7c8a" path="res://control.gd" id="6_ioo17"]
@@ -12,10 +12,10 @@
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
+radius = 0.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f3sb7"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
+radius = 0.25
 
 [sub_resource type="BoxMesh" id="BoxMesh_036b0"]
 
@@ -54,10 +54,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_f3sb7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(0.73, 0, 0, 0, 0.145, 0, 0, 0, 0.55, 0, 0.563894, -0.262149)
-mesh = SubResource("BoxMesh_gv5m4")
-
 [node name="CameraParent" type="Node3D" parent="Player"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.573755, 0)
@@ -78,7 +74,7 @@ mesh = SubResource("BoxMesh_036b0")
 
 [node name="BulletSpawn" type="Node3D" parent="Player/CameraParent/Camera/Gun"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.524595)
+transform = Transform3D(1, 0, 0, 0, 0.996889, -0.0788245, 0, 0.0788245, 0.996889, 0, 0, -0.524595)
 
 [node name="MuzzleFlash" parent="Player/CameraParent/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
 unique_name_in_owner = true

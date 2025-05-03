@@ -15,7 +15,7 @@ radius = 0.1
 
 [sub_resource type="Curve" id="Curve_4utqk"]
 _limits = [0.0, 0.2, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.504631, 0, 0, Vector2(0.996875, 0.2), 0.0591648, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.278715, 0, 0, Vector2(1, 0.10503), 0.0124551, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1sfj"]
@@ -43,6 +43,15 @@ mesh = SubResource("SphereMesh_2ropf")
 shape = SubResource("SphereShape3D_2ropf")
 
 [node name="TrailRenderer" type="Node3D" parent="."]
+script = ExtResource("2_p1sfj")
+lifetime = 0.05
+min_vertex_distance = 0.1
+curve = SubResource("Curve_4utqk")
+material = SubResource("StandardMaterial3D_p1sfj")
+metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
+
+[node name="TrailRenderer2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_p1sfj")
 lifetime = 0.05
 min_vertex_distance = 0.1
