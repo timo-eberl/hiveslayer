@@ -65,6 +65,7 @@ script = ExtResource("2_aqk2v")
 bullet_scene = ExtResource("3_036b0")
 
 [node name="MuzzleFlash" parent="Player/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
+unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.149647)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

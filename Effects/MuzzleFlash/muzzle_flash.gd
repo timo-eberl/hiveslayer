@@ -1,3 +1,4 @@
+class_name MuzzleFlash
 extends Node3D
 
 
@@ -13,9 +14,6 @@ func _process(delta: float) -> void:
 		_flash_timer -= delta
 		if _flash_timer <= 0:
 			end_flash();
-			
-	if Input.is_action_just_pressed("mouse_click"):
-		start_flash()
 		
 func start_flash() -> void:
 	light.visible = true

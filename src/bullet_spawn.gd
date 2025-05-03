@@ -3,6 +3,7 @@ extends Node3D
 @export var bullet_scene : PackedScene
 
 @onready var bullets : Node3D = %Bullets
+@onready var muzzle_flash : MuzzleFlash = %MuzzleFlash
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
@@ -10,3 +11,5 @@ func _physics_process(_delta: float) -> void:
 		bullets.add_child(bullet)
 		bullet.global_transform = self.global_transform
 		bullet.apply_impulse(-self.global_transform.basis.z * 100.0)
+		
+		muzzle_flash.start_flash()

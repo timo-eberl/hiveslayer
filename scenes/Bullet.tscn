@@ -13,7 +13,10 @@ emission_energy_multiplier = 5.0
 radius = 0.1
 
 [node name="Bullet" type="RigidBody3D"]
+lock_rotation = true
 continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_hf8mt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
