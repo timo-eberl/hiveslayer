@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=13 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
-[ext_resource type="Material" uid="uid://b4n7o0oadmm7p" path="res://materials/debug.tres" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://bs75ja6jb0pn7" path="res://src/bullet_spawn.gd" id="2_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://5pcf8hgmwdrf" path="res://control.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 
@@ -11,20 +12,23 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_f3sb7"]
+[sub_resource type="BoxMesh" id="BoxMesh_036b0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_fj7yv"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwbse"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_fj7yv"]
+[sub_resource type="Sky" id="Sky_pkg7o"]
+sky_material = SubResource("ProceduralSkyMaterial_dwbse")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tlwt5"]
-size = Vector3(2, 0.5, 2)
+[sub_resource type="Environment" id="Environment_gbfbk"]
+background_mode = 2
+sky = SubResource("Sky_pkg7o")
+glow_enabled = true
 
 [node name="World" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4346, 18.5021, -30.603)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4346, 7.72626, -30.603)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_f3sb7")
@@ -48,28 +52,21 @@ mesh = SubResource("BoxMesh_gv5m4")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.573755, 0)
 
-[node name="Hill" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -39.905, 0)
-visible = false
-material_override = ExtResource("2_fj7yv")
-mesh = SubResource("SphereMesh_f3sb7")
+[node name="Gun" type="Node3D" parent="Player/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31847, -0.573755, -0.445482)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Hill"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Camera/Gun"]
+transform = Transform3D(0.28, 0, 0, 0, 0.21, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_036b0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hill/StaticBody3D"]
-shape = SubResource("SphereShape3D_fj7yv")
+[node name="BulletSpawn" type="Node3D" parent="Player/Camera/Gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.524595)
+script = ExtResource("2_aqk2v")
+bullet_scene = ExtResource("3_036b0")
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-visible = false
-material_override = ExtResource("2_fj7yv")
-mesh = SubResource("PlaneMesh_fj7yv")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248535, 0)
-shape = SubResource("BoxShape3D_tlwt5")
+[node name="MuzzleFlash" parent="Player/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.149647)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.17382, 0.984777, 0, -0.984777, 0.17382, 0, 59.9392, 0)
@@ -77,5 +74,8 @@ transform = Transform3D(1, 0, 0, 0, 0.17382, 0.984777, 0, -0.984777, 0.17382, 0,
 [node name="terrain" parent="." instance=ExtResource("3_tlwt5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Control" parent="." instance=ExtResource("4_aqk2v")]
-visible = false
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gbfbk")
+
+[node name="Bullets" type="Node3D" parent="."]
+unique_name_in_owner = true

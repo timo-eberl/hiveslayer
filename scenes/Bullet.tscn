@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dof2ev01r3arp"]
+
+[ext_resource type="Script" uid="uid://big8360goxdp8" path="res://src/bullet.gd" id="1_hf8mt"]
+[ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="2_p1sfj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ropf"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ropf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ropf"]
+radius = 0.1
+
+[sub_resource type="Curve" id="Curve_4utqk"]
+_limits = [0.0, 0.2, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.504631, 0, 0, Vector2(0.996875, 0.2), 0.0591648, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1sfj"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.942182, 0.756247, 0.516619, 1)
+emission_energy_multiplier = 3.0
+
+[node name="Bullet" type="RigidBody3D"]
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_hf8mt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_2ropf")
+mesh = SubResource("SphereMesh_2ropf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2ropf")
+
+[node name="TrailRenderer" type="Node3D" parent="."]
+script = ExtResource("2_p1sfj")
+lifetime = 0.05
+min_vertex_distance = 0.1
+curve = SubResource("Curve_4utqk")
+material = SubResource("StandardMaterial3D_p1sfj")
+metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
