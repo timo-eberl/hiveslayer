@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
+[ext_resource type="Script" path="res://src/camera_shake.gd" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
-[ext_resource type="Script" uid="uid://ck0uagqrc1kmw" path="res://src/gun.gd" id="3_pkg7o"]
+[ext_resource type="Script" path="res://src/gun.gd" id="3_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://d3ux7dmo25vqh" path="res://Models/Terrain/terrain.blend" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cbkobb8oy2vgg" path="res://Effects/MuzzleFlash/MuzzleFlash.tscn" id="4_036b0"]
 [ext_resource type="Script" uid="uid://dcpw2w14i7c8a" path="res://control.gd" id="6_ioo17"]
@@ -97,6 +97,7 @@ environment = SubResource("Environment_gbfbk")
 unique_name_in_owner = true
 
 [node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchor_right = 0.201
 anchor_bottom = 0.379
