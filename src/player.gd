@@ -25,7 +25,6 @@ var mouse_sensitivity := 0.1
 func _unhandled_input(event: InputEvent) -> void:
 	if !enabled:
 		return
-	print("mouse_sensitivity: ", mouse_sensitivity)
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		event.relative *= mouse_sensitivity
 		if OS.has_feature("web"):
