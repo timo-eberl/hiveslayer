@@ -11,13 +11,10 @@ config_version=5
 [application]
 
 config/name="Hive Slayer"
-
-
-
 run/main_scene="uid://2rascp5n01m0"
-
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://5pcf8hgmwdrf"
 
 [input]
 
