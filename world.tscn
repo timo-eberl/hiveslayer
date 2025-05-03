@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=18 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -20,6 +20,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_036b0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwbse"]
+sky_top_color = Color(0.945098, 0.623529, 0.419608, 1)
+sky_horizon_color = Color(0.239216, 0.368627, 0.282353, 1)
+sky_curve = 0.289781
+ground_bottom_color = Color(0.156863, 0.215686, 0.188235, 1)
+ground_horizon_color = Color(0.239216, 0.368627, 0.282353, 1)
 
 [sub_resource type="Sky" id="Sky_pkg7o"]
 sky_material = SubResource("ProceduralSkyMaterial_dwbse")
@@ -72,6 +77,7 @@ transform = Transform3D(0.28, 0, 0, 0, 0.21, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_036b0")
 
 [node name="BulletSpawn" type="Node3D" parent="Player/CameraParent/Camera/Gun"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.524595)
 
 [node name="MuzzleFlash" parent="Player/CameraParent/Camera/Gun/BulletSpawn" instance=ExtResource("4_036b0")]
