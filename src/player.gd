@@ -17,7 +17,7 @@ var enabled := true
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	
 # look with mouse
 func _unhandled_input(event: InputEvent) -> void:
 	if !enabled:
