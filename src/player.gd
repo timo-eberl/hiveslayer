@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var running_speed := 10.0
 @export var jump_velocity := 5.0
 
-var enabled := true
+var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
@@ -26,6 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if !enabled:
 		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		event.relative *= mouse_sensitivity
 		if OS.has_feature("web"):
 			event.relative *= 5.0
 		self.rotation_degrees.y -= look_speed * event.relative.x;
@@ -80,8 +81,3 @@ func _physics_process(delta: float) -> void:
 	# respawn when falling down
 	if self.global_position.y < -3.0:
 		self.global_position = initial_position
-
-#For the mouse sensitivity
-func _input(event):
-	if event is InputEventMouseMotion and menu.pause:
-		rotate_y(-event.relative.x * mouse_sensitivity)
