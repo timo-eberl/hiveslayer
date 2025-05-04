@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.4
 shape = SubResource("CapsuleShape3D_w32cn")
 
 [node name="Small Ant" parent="." instance=ExtResource("2_i6cgb")]
-transform = Transform3D(-8.34232e-07, 0, 19.085, 0, 19.085, 0, -19.085, 0, -8.34232e-07, 0.0428788, -0.1246, -0.239788)
+transform = Transform3D(-8.54121e-07, 0, 19.54, 0, 19.54, 0, -19.54, 0, -8.54121e-07, 0.0428788, -0.181696, -0.239788)
 
 [node name="pCube6" parent="Small Ant/group3" index="0"]
 transform = Transform3D(0.821191, -3.97612e-11, -0.570653, 3.7427e-13, 1, -6.9138e-11, 0.570653, 5.65619e-11, 0.821191, -0.0269055, 0.0300596, 0.0109327)
