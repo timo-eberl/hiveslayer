@@ -22,7 +22,7 @@ func actor_setup():
 	await get_tree().physics_frame
 
 	# Now that the navigation map is no longer empty, set the movement target.
-	nav_agent.set_target_position(%Flame.global_position)
+	nav_agent.set_target_position(Globals.flame.global_position)
 
 func take_damage(amount : float, hit_position : Vector3):
 	_health -= amount
