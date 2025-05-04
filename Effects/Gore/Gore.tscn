@@ -31,7 +31,8 @@ curve_z = SubResource("Curve_va32q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0278"]
 lifetime_randomness = 0.38
-inherit_velocity_ratio = 0.337
+particle_flag_align_y = true
+inherit_velocity_ratio = 0.65
 direction = Vector3(0, -1, 0)
 spread = 1.627
 initial_velocity_max = 4.0
@@ -108,6 +109,7 @@ script = ExtResource("1_k53ux")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00957942, 0, 0)
 amount = 123
 lifetime = 0.34
+transform_align = 2
 process_material = SubResource("ParticleProcessMaterial_p0278")
 draw_pass_1 = SubResource("QuadMesh_oosbs")
 
