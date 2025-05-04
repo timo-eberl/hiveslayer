@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=36 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -97,6 +97,14 @@ Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 5
 Label/font_sizes/font_size = 50
+
+[sub_resource type="Theme" id="Theme_2u3nc"]
+Label/font_sizes/font_size = 24
+
+[sub_resource type="Theme" id="Theme_udxuc"]
+
+[sub_resource type="Theme" id="Theme_ikiii"]
+Label/font_sizes/font_size = 24
 
 [sub_resource type="Animation" id="Animation_hiqwa"]
 resource_name = "Black_in"
@@ -312,14 +320,18 @@ grow_vertical = 2
 script = ExtResource("7_wse8f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(0, 175)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_2u3nc")
 text = "Sound"
 
 [node name="Master" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_udxuc")
 max_value = 1.0
 step = 0.01
 value = 0.5
@@ -327,10 +339,12 @@ script = ExtResource("14_2u3nc")
 
 [node name="Label2" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_ikiii")
 text = "Mouse sensitiviti"
 
 [node name="HSlider2" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 min_value = 1.0
 max_value = 5.0
 step = 0.25
@@ -345,12 +359,14 @@ text = "return"
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/CanvasLayer"]
 z_index = 117
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -149.0
-offset_right = 195.0
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -74.0
+offset_right = 266.0
+offset_bottom = 75.0
+grow_vertical = 2
 alignment = 2
 vertical = true
 script = ExtResource("9_k3n1d")
