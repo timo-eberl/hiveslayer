@@ -72,6 +72,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("11_ikiii")
+texture_filter = 0
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8
