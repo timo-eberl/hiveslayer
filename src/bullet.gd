@@ -15,4 +15,4 @@ func _on_body_entered(body: Node) -> void:
 				c.emitting = true
 	
 	if body is Enemy:
-		print("enemy hit")
+		body.take_damage(25)
