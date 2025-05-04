@@ -19,8 +19,11 @@ var mouse_sensitivity := 0.000002
 @onready var gun : Gun = %Gun
 @onready var initial_position : Vector3 = self.global_position
 @onready var menu = %Control
+@onready var intro = %AnimationIntro
 
-	
+func _ready() -> void:
+	intro.play("Black_in")
+
 # look with mouse
 func _unhandled_input(event: InputEvent) -> void:
 	if !enabled:

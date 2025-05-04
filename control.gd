@@ -17,5 +17,6 @@ func _on_button_pressed():
 	started = true
 	pause = true
 	$".".visible = false
+	
 
 	
