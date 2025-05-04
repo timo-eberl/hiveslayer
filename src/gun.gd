@@ -7,6 +7,7 @@ extends Node3D
 @onready var camera : CameraShake = %Camera
 @onready var muzzle_flash : MuzzleFlash = %MuzzleFlash
 @onready var bullet_spawn : Node3D = %BulletSpawn
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 func shoot() -> void:
 	var bullet : RigidBody3D = bullet_scene.instantiate()
@@ -18,3 +19,6 @@ func shoot() -> void:
 	camera.shake(0.25, 0.01)
 	
 	muzzle_flash.start_flash()
+	
+	animation_player.stop()
+	animation_player.play("recoil")
