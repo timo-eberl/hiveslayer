@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0gyej40ykdb1"]
+
+[ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="1_gju2f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24g56"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ga5sg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o1udh"]
+radius = 0.1
+
+[sub_resource type="Curve" id="Curve_aeyyv"]
+_limits = [0.0, 0.2, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.278715, 0, 0, Vector2(1, 0.10503), 0.0124551, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi1vt"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.942182, 0.756247, 0.516619, 1)
+emission_energy_multiplier = 3.0
+
+[node name="grenade" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_24g56")
+mesh = SubResource("SphereMesh_ga5sg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_o1udh")
+
+[node name="TrailRenderer" type="Node3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+script = ExtResource("1_gju2f")
+lifetime = 0.05
+min_vertex_distance = 0.1
+curve = SubResource("Curve_aeyyv")
+material = SubResource("StandardMaterial3D_oi1vt")
+metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
+
+[node name="TrailRenderer2" type="Node3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 0, 0, 0)
+script = ExtResource("1_gju2f")
+lifetime = 0.05
+min_vertex_distance = 0.1
+curve = SubResource("Curve_aeyyv")
+material = SubResource("StandardMaterial3D_oi1vt")
+metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
