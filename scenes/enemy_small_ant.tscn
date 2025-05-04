@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkf03n4vbyt5g"]
+[gd_scene load_steps=7 format=3 uid="uid://bkf03n4vbyt5g"]
 
 [ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="1_w32cn"]
 [ext_resource type="PackedScene" uid="uid://cvgxpv4v17ve" path="res://Effects/Gore/Gore.tscn" id="2_65g38"]
 [ext_resource type="PackedScene" uid="uid://bggxvihwbojr6" path="res://Models/Small Ant.fbx" id="2_i6cgb"]
 [ext_resource type="Script" uid="uid://crl42c77lby42" path="res://src/animation_player.gd" id="3_65g38"]
+[ext_resource type="PackedScene" uid="uid://dn2kiwx2ckkky" path="res://Effects/BloodSplash/bloodSplash.tscn" id="3_n7ngr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w32cn"]
 radius = 0.385
@@ -14,6 +15,7 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 script = ExtResource("1_w32cn")
 movement_speed = 4.0
 gore_scene = ExtResource("2_65g38")
+splash_scene = ExtResource("3_n7ngr")
 
 [node name="Center" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167585, 0)
