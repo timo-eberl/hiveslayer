@@ -4,13 +4,13 @@ extends CharacterBody3D
 @export var movement_speed: float = 2.0
 
 @export var gore_scene : PackedScene
-
+@export var splash_scene : PackedScene
 @onready var center : Node3D = $Center
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 
 var rng = RandomNumberGenerator.new()
-var _health := 100.0
+var _health := 3.0
 
 func _ready():
 	# Make sure to not await during _ready.
@@ -28,22 +28,31 @@ func take_damage(amount : float, hit_position : Vector3):
 	
 	var outward_direction : Vector3 = (hit_position - center.global_position).normalized()
 	
-	for i in range(25):
-		var rand_range := 1.5
-		var splatter_direction = Vector3(
+	for i in range(2):
+		var rand_range := 0.25
+		var splash : Node3D = splash_scene.instantiate()
+		get_tree().root.add_child(splash)
+		splash.global_position = center.global_position + Vector3(
 			rng.randf_range(-rand_range, rand_range),
-			rng.randf_range(-rand_range, rand_range),
-			rng.randf_range(-rand_range, rand_range)
-		) + Vector3(0,5,0)
-		splatter_direction = splatter_direction.normalized()
-		var gore : RigidBody3D = gore_scene.instantiate()
-		get_tree().root.add_child(gore)
-		gore.global_position = center.global_position
-		gore.apply_impulse(splatter_direction * 30.0 * rng.randf_range(0.2, 1))
+			rng.randf_range(0, rand_range),
+			rng.randf_range(-rand_range, rand_range))
+		
 	
 	# TODO hit effect
 	if _health <= 0.0:
 		queue_free()
+		for i in range(25):
+			var rand_range := 1.5
+			var splatter_direction = Vector3(
+				rng.randf_range(-rand_range, rand_range),
+				rng.randf_range(-rand_range, rand_range),
+				rng.randf_range(-rand_range, rand_range)
+			) + Vector3(0,3,0)
+			splatter_direction = splatter_direction.normalized()
+			var gore : RigidBody3D = gore_scene.instantiate()
+			get_tree().root.add_child(gore)
+			gore.global_position = center.global_position
+			gore.apply_impulse(splatter_direction * 30.0 * rng.randf_range(0.2, 1))
 		# TODO die effect
 
 func _physics_process(delta):
