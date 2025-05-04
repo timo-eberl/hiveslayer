@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkf03n4vbyt5g"]
+
+[ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="1_w32cn"]
+[ext_resource type="PackedScene" uid="uid://bggxvihwbojr6" path="res://Models/Small Ant.fbx" id="2_i6cgb"]
+[ext_resource type="Script" path="res://src/animation_player.gd" id="3_65g38"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k3n1d"]
+
+[node name="Enemy" type="CharacterBody3D"]
+transform = Transform3D(0.532669, 0, 0.846323, 0, 1, 0, -0.846323, 0, 0.532669, 0, 0, 0)
+script = ExtResource("1_w32cn")
+movement_speed = 4.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474023, 0)
+shape = SubResource("SphereShape3D_k3n1d")
+
+[node name="Small Ant" parent="." instance=ExtResource("2_i6cgb")]
+transform = Transform3D(-6.93044e-07, 0, 15.855, 0, 15.855, 0, -15.855, 0, -6.93044e-07, 0.0428788, -0.0997078, -0.239788)
+
+[node name="pCube6" parent="Small Ant/group3" index="0"]
+transform = Transform3D(0.821191, -3.97613e-11, -0.570653, 3.74273e-13, 1, -6.91381e-11, 0.570653, 5.6562e-11, 0.821191, -0.0269055, 0.0300596, 0.0109327)
+
+[node name="pCube5" parent="Small Ant/group3" index="1"]
+transform = Transform3D(0.925091, 0, 0.379746, 0, 1, 0, -0.379746, 0, 0.925091, -0.00953684, 0.0300596, 0.00150564)
+
+[node name="pCube4" parent="Small Ant/group3" index="2"]
+transform = Transform3D(0.988404, -1.07498e-11, -0.151848, 2.54185e-13, 1, -6.91384e-11, 0.151848, 6.8298e-11, 0.988404, -0.0048448, 0.0300596, 0.000923588)
+
+[node name="pCube3" parent="Small Ant/group3" index="3"]
+transform = Transform3D(1, -1.65842e-10, 1.27049e-11, 1.66327e-10, 0.99705, -0.0767595, 6.25108e-14, 0.0767595, 0.99705, 0.00340193, 0.0271516, -0.00446488)
+
+[node name="pCube1" parent="Small Ant/group3" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00938935, 0.0270119, 0)
+
+[node name="pCube2" parent="Small Ant/group3" index="5"]
+transform = Transform3D(1, -1.65842e-10, 1.27049e-11, 1.66327e-10, 0.99705, -0.0767595, 6.25108e-14, 0.0767595, 0.99705, 0.00340193, 0.0280288, 0.00413082)
+
+[node name="pSphere2" parent="Small Ant/group3" index="6"]
+transform = Transform3D(1, 3.71646e-10, 2.67797e-11, -3.72609e-10, 0.99739, 0.0721973, 1.22019e-13, -0.0721973, 0.99739, -0.0173071, 0.0238607, -5.55111e-19)
+
+[node name="pSphere1" parent="Small Ant/group3" index="7"]
+transform = Transform3D(1, -1.65842e-10, 1.27049e-11, 1.66327e-10, 0.99705, -0.0767595, 6.25108e-14, 0.0767595, 0.99705, 0.00665842, 0.0251151, 5.55111e-19)
+
+[node name="pasted__pCube9" parent="Small Ant/group/pasted__group3" index="0"]
+transform = Transform3D(0.996002, -1.76137e-11, 0.0893258, -1.66125e-13, 1, 1.99036e-10, -0.0893258, -1.98256e-10, 0.996002, -0.00953684, 0.0300596, -0.00426574)
+
+[node name="pasted__pCube7" parent="Small Ant/group4/pasted__group32" index="0"]
+transform = Transform3D(0.955778, 0, -0.29409, 0, 1, 0, 0.29409, 0, 0.955778, -0.00524275, 0.0300596, -0.000923587)
+
+[node name="pasted__pCube8" parent="Small Ant/group4/pasted__group32" index="1"]
+transform = Transform3D(0.997334, 0, -0.0729771, 0, 1, 0, 0.0729772, 0, 0.997333, -0.0269055, 0.0300596, -0.0109327)
+
+[node name="AnimationPlayer" parent="Small Ant" index="3"]
+speed_scale = 6.0
+script = ExtResource("3_65g38")
+
+[editable path="Small Ant"]
