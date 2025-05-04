@@ -9,6 +9,8 @@ extends Node3D
 @onready var bullet_spawn : Node3D = %BulletSpawn
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+var grenade = preload("res://grenade.tscn")
+
 func shoot() -> void:
 	var bullet : RigidBody3D = bullet_scene.instantiate()
 	bullets.add_child(bullet)
@@ -22,3 +24,20 @@ func shoot() -> void:
 	
 	animation_player.stop()
 	animation_player.play("recoil")
+	
+func throw():
+		print("throw")
+		var grenadeins = grenade.instantiate()
+		grenadeins.global_position = bullet_spawn.global_position
+		get_tree().current_scene.add_child(grenadeins)
+		
+		
+		var force = -18
+		var up_direction = 3.5
+		
+		var player_rotation = camera.global_transform.basis.z.normalized()
+		
+		grenadeins.apply_central_impulse(player_rotation * force + Vector3(0, up_direction, 0))
+	
+	
+	

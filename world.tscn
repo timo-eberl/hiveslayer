@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=56 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
+[ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -98,6 +99,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("11_ikiii")
+texture_filter = 0
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8
@@ -593,6 +595,11 @@ horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_bc84e")
+volume_db = 10.307
+autoplay = true
 
 [connection signal="drag_ended" from="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" to="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/CenterContainer" method="_on_button_return"]
