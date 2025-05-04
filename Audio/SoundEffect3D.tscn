@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bosn07kyd3yf1"]
+
+[ext_resource type="Script" uid="uid://bm7mae3jxxqag" path="res://Audio/sound_effect_3d.gd" id="1_kcvg0"]
+
+[node name="SoundEffect3d" type="AudioStreamPlayer3D"]
+script = ExtResource("1_kcvg0")
