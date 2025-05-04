@@ -14,6 +14,8 @@ var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
+var cooldown = 15
+
 
 @onready var camera : Node3D = %CameraParent
 @onready var gun : Gun = %Gun
@@ -68,8 +70,8 @@ func _physics_process(delta: float) -> void:
 	# Handle shooting
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot()
-	if Input.is_action_just_pressed("Throw"):
-		print("throw!!")
+	if Input.is_action_just_pressed("Throw") and cooldown >= 15:
+		cooldown = 0
 		gun.throw()
 
 	# Get the input direction and handle the movement/deceleration.
@@ -88,3 +90,8 @@ func _physics_process(delta: float) -> void:
 	# respawn when falling down
 	if self.global_position.y < -3.0:
 		self.global_position = initial_position
+
+
+func _on_grenade_cooldown_timeout() -> void:
+	cooldown += 1
+	 # Replace with function body.

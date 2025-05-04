@@ -1,6 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0gyej40ykdb1"]
+[gd_scene load_steps=11 format=3 uid="uid://b0gyej40ykdb1"]
 
+[ext_resource type="Script" uid="uid://cg3ig5df8e07n" path="res://grenade.gd" id="1_24g56"]
 [ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="1_gju2f"]
+[ext_resource type="PackedScene" uid="uid://bg3nt44ym7iau" path="res://explosion.tscn" id="3_ga5sg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gju2f"]
+bounce = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24g56"]
 emission_enabled = true
@@ -25,7 +30,13 @@ emission_enabled = true
 emission = Color(0.942182, 0.756247, 0.516619, 1)
 emission_energy_multiplier = 3.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ga5sg"]
+radius = 4.13442
+
 [node name="grenade" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_gju2f")
+continuous_cd = true
+script = ExtResource("1_24g56")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_24g56")
@@ -52,3 +63,17 @@ min_vertex_distance = 0.1
 curve = SubResource("Curve_aeyyv")
 material = SubResource("StandardMaterial3D_oi1vt")
 metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
+
+[node name="BlastRadius" type="Area3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlastRadius"]
+shape = SubResource("SphereShape3D_ga5sg")
+
+[node name="FuseTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="Explosion" parent="." instance=ExtResource("3_ga5sg")]
+
+[connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]

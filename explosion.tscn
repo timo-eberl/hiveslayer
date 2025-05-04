@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg3nt44ym7iau"]
+[gd_scene load_steps=9 format=3 uid="uid://bg3nt44ym7iau"]
 
+[ext_resource type="Script" uid="uid://clxaoq21kqkcl" path="res://src/destroy_timer.gd" id="1_j4sxf"]
 [ext_resource type="Texture2D" uid="uid://dj0ll0lecuh7p" path="res://Models/Terrain/textures/9h1f38g0.png" id="1_q7epf"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_vxas0"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_j4sxf"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_m5xho"]
+[ext_resource type="Script" uid="uid://cihb2kq7hawqm" path="res://grenade_explosion.gd" id="2_vxas0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmxf7"]
 transparency = 1
@@ -47,24 +43,15 @@ anim_speed_max = 1.0
 [sub_resource type="QuadMesh" id="QuadMesh_gjpps"]
 
 [node name="Explosion" type="Node3D"]
+script = ExtResource("1_j4sxf")
+lifetimeSeconds = 1.915
 
-[node name="grenade" type="RigidBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="grenade"]
-visible = false
-mesh = SubResource("SphereMesh_vxas0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="grenade"]
-shape = SubResource("SphereShape3D_j4sxf")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="grenade"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-shape = SubResource("SphereShape3D_m5xho")
-
-[node name="GrenadeDestruction" type="Node3D" parent="."]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="GrenadeDestruction"]
+[node name="GrenadeExplosion" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_kmxf7")
+emitting = false
 amount = 20
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_3xjsk")
 draw_pass_1 = SubResource("QuadMesh_gjpps")
+script = ExtResource("2_vxas0")

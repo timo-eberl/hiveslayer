@@ -26,7 +26,6 @@ func shoot() -> void:
 	animation_player.play("recoil")
 	
 func throw():
-		print("throw")
 		var grenadeins = grenade.instantiate()
 		grenadeins.global_position = bullet_spawn.global_position
 		get_tree().current_scene.add_child(grenadeins)
