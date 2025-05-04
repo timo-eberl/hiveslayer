@@ -76,7 +76,9 @@ stretch = true
 stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(288, 162)
+render_target_update_mode = 4
 
 [node name="Player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -269,10 +271,10 @@ text = "Mouse sensitiviti"
 
 [node name="HSlider2" type="HSlider" parent="Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
-min_value = 0.01
-max_value = 0.1
+min_value = 1.0
+max_value = 5.0
 step = 0.01
-value = 0.05
+value = 2.5
 script = ExtResource("8_ic0uy")
 
 [node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer"]
