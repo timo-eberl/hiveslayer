@@ -272,6 +272,7 @@ mouse_filter = 1
 [node name="Control" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 2170.0
@@ -289,14 +290,6 @@ offset_right = 729.0
 offset_bottom = 170.0
 theme = SubResource("Theme_hiqwa")
 text = "Hivemind"
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_left = -10.0
-offset_top = 1.0
-offset_right = 1326.0
-offset_bottom = 778.0
-color = Color(1, 1, 1, 0)
 
 [node name="BoxContainer" type="BoxContainer" parent="Control"]
 z_index = 117
@@ -352,6 +345,15 @@ script = ExtResource("8_ic0uy")
 layout_mode = 2
 text = "return"
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 1.0
+offset_right = 1326.0
+offset_bottom = 778.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+
 [node name="AnimationIntro" type="AnimationPlayer" parent="Control"]
 unique_name_in_owner = true
 libraries = {
@@ -359,12 +361,15 @@ libraries = {
 }
 script = ExtResource("15_hiqwa")
 
+[node name="OpeningCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.861, 10.8287, -20.7387)
+
 [connection signal="pressed" from="Control/BoxContainer/Button" to="Control" method="_on_button_pressed"]
-[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/CenterContainer" method="_on_button_2_pressed"]
 [connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/BoxContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/CenterContainer" method="_on_button_2_pressed"]
 [connection signal="drag_ended" from="Control/CenterContainer/VBoxContainer/HSlider2" to="Control/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
-[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/CenterContainer" method="_on_button_return"]
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/BoxContainer" method="_on_button_return_to_start_menu"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/CenterContainer" method="_on_button_return"]
 [connection signal="animation_finished" from="Control/AnimationIntro" to="SubViewportContainer/SubViewport/Player" method="_on_animation_intro_animation_finished"]
 [connection signal="animation_finished" from="Control/AnimationIntro" to="Control" method="_on_animation_player_animation_finished"]
 
