@@ -25,11 +25,12 @@ func _physics_process(delta):
 
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	
-	var z := -velocity.normalized()
-	var y := Vector3.UP
-	var x := -z.cross(y).normalized()
-	y = -x.cross(z).normalized()
-	var target_rotation := Basis(x,y,z).get_rotation_quaternion()
-	self.quaternion = self.quaternion.slerp(target_rotation, delta * 5.0)
+	if velocity.length() > 0.0:
+		var z := -velocity.normalized()
+		var y := Vector3.UP
+		var x := -z.cross(y).normalized()
+		y = -x.cross(z).normalized()
+		var target_rotation := Basis(x,y,z).get_rotation_quaternion()
+		self.quaternion = self.quaternion.slerp(target_rotation, delta * 5.0)
 	
 	move_and_slide()
