@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dof2ev01r3arp"]
+[gd_scene load_steps=9 format=3 uid="uid://dof2ev01r3arp"]
 
 [ext_resource type="Script" uid="uid://big8360goxdp8" path="res://src/bullet.gd" id="1_hf8mt"]
+[ext_resource type="PackedScene" uid="uid://c2cph0tlbeqgu" path="res://Effects/GroundParticles/groundParticles.tscn" id="2_4utqk"]
 [ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="2_p1sfj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ropf"]
@@ -32,6 +33,7 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_hf8mt")
+ground_particles_scene = ExtResource("2_4utqk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

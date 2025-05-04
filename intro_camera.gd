@@ -6,4 +6,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if $".".position.z < 0:
 		$".".position.z += 0.25
-		print($".".position.z)
