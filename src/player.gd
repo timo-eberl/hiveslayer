@@ -41,10 +41,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		menu.pause = false
+		#menu.pause = false
 	if Input.is_action_just_pressed("mouse_click") and menu.started:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		menu.pause = true
+		#menu.pause = true
 	
 	if !enabled:
 		return
