@@ -69,7 +69,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot()
 	if Input.is_action_just_pressed("Throw"):
-		print("throw!!")
 		gun.throw()
 
 	# Get the input direction and handle the movement/deceleration.
