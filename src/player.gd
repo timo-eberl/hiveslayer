@@ -19,6 +19,13 @@ var mouse_sensitivity := 0.000002
 @onready var gun : Gun = %Gun
 @onready var initial_position : Vector3 = self.global_position
 @onready var menu = %Control
+@onready var animation_intro = %AnimationIntro
+
+func _ready() -> void:
+	print(menu)
+	print(animation_intro)
+	animation_intro.play("Black_in")
+	
 
 	
 # look with mouse
@@ -81,3 +88,7 @@ func _physics_process(delta: float) -> void:
 	# respawn when falling down
 	if self.global_position.y < -3.0:
 		self.global_position = initial_position
+
+
+func _on_animation_intro_animation_finished(anim_name: StringName) -> void:
+	pass # Replace with function body.
