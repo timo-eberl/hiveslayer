@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 
+var _health := 100.0
+
 func _ready():
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
@@ -15,6 +17,13 @@ func actor_setup():
 
 	# Now that the navigation map is no longer empty, set the movement target.
 	nav_agent.set_target_position(%Flame.global_position)
+
+func take_damage(amount : float):
+	_health -= amount
+	# TODO hit effect
+	if _health <= 0.0:
+		queue_free()
+		# TODO die effect
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
