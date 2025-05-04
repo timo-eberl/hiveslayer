@@ -19,6 +19,10 @@ func _on_button_pressed():
 	pause = true
 	$".".visible = false
 	playerCamera.make_current()
+
+func pauze_game():
+	player.enabled = false
+	$".".visible = true
 	
 
 	
