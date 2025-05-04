@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://rtp333mgmlpa" path="res://intro_camera.gd" id="9_2u3nc"]
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="Texture2D" uid="uid://di2nylg3vxnmu" path="res://Models/Terrain/textures/T_smoke_flipbook.png" id="11_ikiii"]
-[ext_resource type="Script" uid="uid://dkuoghm2y5uub" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
+[ext_resource type="Script" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
