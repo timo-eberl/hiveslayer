@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @export var gore_scene : PackedScene
 @export var splash_scene : PackedScene
+@export var takeDamageSound : AudioStreamPlayer3D
+@export var deathSound : AudioStreamWAV
 @onready var center : Node3D = $Center
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
@@ -21,11 +23,12 @@ func actor_setup():
 	await get_tree().physics_frame
 
 	# Now that the navigation map is no longer empty, set the movement target.
-	nav_agent.set_target_position(%Flame.global_position)
+	nav_agent.set_target_position(Globals.flame.global_position)
 
 func take_damage(amount : float, hit_position : Vector3):
 	_health -= amount
-	
+	takeDamageSound.pitch_scale = randf_range(0.9, 1.1) # Add random variation to sound pitch
+	takeDamageSound.play()
 	var outward_direction : Vector3 = (hit_position - center.global_position).normalized()
 	
 	for i in range(2):
@@ -53,7 +56,7 @@ func take_damage(amount : float, hit_position : Vector3):
 			get_tree().root.add_child(gore)
 			gore.global_position = center.global_position
 			gore.apply_impulse(splatter_direction * 30.0 * rng.randf_range(0.2, 1))
-		# TODO die effect
+		SoundEffect3D.SoundPlayPosition(get_tree().root, center.global_position, deathSound, randf_range(0.8, 1.2), 0)
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():

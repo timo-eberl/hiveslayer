@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://5pcf8hgmwdrf"
 
+[autoload]
+
+Globals="*res://src/globals.gd"
+
 [input]
 
 move_left={

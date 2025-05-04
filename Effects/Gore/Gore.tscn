@@ -1,13 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvgxpv4v17ve"]
+[gd_scene load_steps=19 format=3 uid="uid://cvgxpv4v17ve"]
 
 [ext_resource type="Script" uid="uid://dxgcthyiuei12" path="res://Effects/Gore/gore.gd" id="1_k53ux"]
-
-[sub_resource type="Curve" id="Curve_xyw78"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.70889, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_k53ux"]
-curve = SubResource("Curve_xyw78")
+[ext_resource type="Texture2D" uid="uid://w6wfgg46mdbw" path="res://Effects/BloodSplash/blood_drop.png" id="2_8qv5j"]
 
 [sub_resource type="Curve" id="Curve_8qv5j"]
 _limits = [0.0, 3.0, 0.0, 1.0]
@@ -30,31 +24,24 @@ curve_y = SubResource("Curve_mxtqr")
 curve_z = SubResource("Curve_va32q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0278"]
-lifetime_randomness = 0.38
+lifetime_randomness = 0.54
 particle_flag_align_y = true
+angle_min = -55.3
+angle_max = 33.3
 inherit_velocity_ratio = 0.65
 direction = Vector3(0, -1, 0)
-spread = 1.627
-initial_velocity_max = 4.0
+spread = 103.555
 gravity = Vector3(0, -9, 0)
 scale_min = 0.1
-scale_max = 0.2
-scale_curve = SubResource("CurveTexture_k53ux")
+scale_max = 0.3
 scale_over_velocity_curve = SubResource("CurveXYZTexture_rux07")
 
-[sub_resource type="Gradient" id="Gradient_umx81"]
-offsets = PackedFloat32Array(0, 0.657895, 0.736842, 1)
-colors = PackedColorArray(0, 0.521569, 0.317647, 1, 0, 0.521569, 0.317647, 1, 0, 0.521569, 0.317647, 0, 0, 0.521569, 0.317647, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jn2gl"]
-gradient = SubResource("Gradient_umx81")
-fill = 1
-fill_from = Vector2(0.516854, 0.52809)
-fill_to = Vector2(0.803371, 0.230337)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olsn4"]
-transparency = 1
-albedo_texture = SubResource("GradientTexture2D_jn2gl")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0, 0.521569, 0.317647, 1)
+albedo_texture = ExtResource("2_8qv5j")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -98,6 +85,7 @@ radius = 0.05
 height = 0.1
 
 [node name="Gore" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0184585, 0, 0)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 3.0
@@ -106,10 +94,10 @@ max_contacts_reported = 10
 script = ExtResource("1_k53ux")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00957942, 0, 0)
-amount = 123
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698801, 0, 0)
+amount = 122
 lifetime = 0.34
-transform_align = 2
+transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_p0278")
 draw_pass_1 = SubResource("QuadMesh_oosbs")
 

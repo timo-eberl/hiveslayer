@@ -1,21 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkf03n4vbyt5g"]
+[gd_scene load_steps=9 format=3 uid="uid://bkf03n4vbyt5g"]
 
 [ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="1_w32cn"]
 [ext_resource type="PackedScene" uid="uid://cvgxpv4v17ve" path="res://Effects/Gore/Gore.tscn" id="2_65g38"]
 [ext_resource type="PackedScene" uid="uid://bggxvihwbojr6" path="res://Models/Small Ant.fbx" id="2_i6cgb"]
 [ext_resource type="Script" uid="uid://crl42c77lby42" path="res://src/animation_player.gd" id="3_65g38"]
 [ext_resource type="PackedScene" uid="uid://dn2kiwx2ckkky" path="res://Effects/BloodSplash/bloodSplash.tscn" id="3_n7ngr"]
+[ext_resource type="AudioStream" uid="uid://bxgnrn8ojh5n6" path="res://Audio/sound_kill_enemy.wav" id="4_dguvf"]
+[ext_resource type="AudioStream" uid="uid://d0sp178jr8a7g" path="res://Audio/sound_hit_enemy.wav" id="6_n7ngr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w32cn"]
 radius = 0.385
 height = 1.42
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("takeDamageSound")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 script = ExtResource("1_w32cn")
 movement_speed = 4.0
 gore_scene = ExtResource("2_65g38")
 splash_scene = ExtResource("3_n7ngr")
+takeDamageSound = NodePath("TakeDamageSound")
+deathSound = ExtResource("4_dguvf")
 
 [node name="Center" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167585, 0)
@@ -65,5 +69,8 @@ transform = Transform3D(0.997334, 0, -0.0729771, 0, 1, 0, 0.0729772, 0, 0.997333
 [node name="AnimationPlayer" parent="Small Ant" index="4"]
 speed_scale = 6.0
 script = ExtResource("3_65g38")
+
+[node name="TakeDamageSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_n7ngr")
 
 [editable path="Small Ant"]
