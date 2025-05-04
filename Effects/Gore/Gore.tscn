@@ -34,17 +34,16 @@ lifetime_randomness = 0.38
 inherit_velocity_ratio = 0.337
 direction = Vector3(0, -1, 0)
 spread = 1.627
-initial_velocity_min = 20.0
-initial_velocity_max = 30.0
-gravity = Vector3(0, -40, 0)
-scale_min = 0.3
-scale_max = 0.5
+initial_velocity_max = 4.0
+gravity = Vector3(0, -9, 0)
+scale_min = 0.1
+scale_max = 0.2
 scale_curve = SubResource("CurveTexture_k53ux")
 scale_over_velocity_curve = SubResource("CurveXYZTexture_rux07")
 
 [sub_resource type="Gradient" id="Gradient_umx81"]
 offsets = PackedFloat32Array(0, 0.657895, 0.736842, 1)
-colors = PackedColorArray(0.637635, 0, 0.0510916, 1, 0.519911, 0, 0.0115096, 1, 0.654902, 0, 0.0156863, 0, 0.627451, 0, 0, 0)
+colors = PackedColorArray(0, 0.521569, 0.317647, 1, 0, 0.521569, 0.317647, 1, 0, 0.521569, 0.317647, 0, 0, 0.521569, 0.317647, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jn2gl"]
 gradient = SubResource("Gradient_umx81")
@@ -98,6 +97,9 @@ radius = 0.05
 height = 0.1
 
 [node name="Gore" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 3.0
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_k53ux")
@@ -105,7 +107,7 @@ script = ExtResource("1_k53ux")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00957942, 0, 0)
 amount = 123
-lifetime = 0.57
+lifetime = 0.34
 process_material = SubResource("ParticleProcessMaterial_p0278")
 draw_pass_1 = SubResource("QuadMesh_oosbs")
 
