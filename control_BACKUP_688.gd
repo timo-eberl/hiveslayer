@@ -17,3 +17,12 @@ func _on_button_pressed():
 	started = true
 	pause = true
 	$".".visible = false
+<<<<<<< HEAD
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	$"ColorRect".visible = false
+	print($"ColorRect".mouse_filter)
+	
+=======
+>>>>>>> ad042147a989f20238316714bc39199d1efe486b
