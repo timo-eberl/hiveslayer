@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=33 format=3 uid="uid://2rascp5n01m0"]
-=======
-[gd_scene load_steps=28 format=3 uid="uid://2rascp5n01m0"]
->>>>>>> 64188b879c64e5f9e7337c387d8c1b371318e15b
+[gd_scene load_steps=29 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -17,11 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkf03n4vbyt5g" path="res://scenes/enemy_small_ant.tscn" id="8_2o6r5"]
 [ext_resource type="Script" uid="uid://b6kneesubmmfm" path="res://h_slider_2.gd" id="8_ic0uy"]
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
-<<<<<<< HEAD
-[ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="11_ic0uy"]
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
-=======
->>>>>>> 64188b879c64e5f9e7337c387d8c1b371318e15b
 [ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
