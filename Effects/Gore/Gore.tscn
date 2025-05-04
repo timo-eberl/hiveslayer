@@ -1,7 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvgxpv4v17ve"]
+[gd_scene load_steps=21 format=3 uid="uid://cvgxpv4v17ve"]
 
 [ext_resource type="Script" uid="uid://dxgcthyiuei12" path="res://Effects/Gore/gore.gd" id="1_k53ux"]
 [ext_resource type="Texture2D" uid="uid://w6wfgg46mdbw" path="res://Effects/BloodSplash/blood_drop.png" id="2_8qv5j"]
+
+[sub_resource type="Curve" id="Curve_xyw78"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.70889, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k53ux"]
+curve = SubResource("Curve_xyw78")
 
 [sub_resource type="Curve" id="Curve_8qv5j"]
 _limits = [0.0, 3.0, 0.0, 1.0]
@@ -31,9 +38,11 @@ angle_max = 33.3
 inherit_velocity_ratio = 0.65
 direction = Vector3(0, -1, 0)
 spread = 103.555
+initial_velocity_max = 4.0
 gravity = Vector3(0, -9, 0)
 scale_min = 0.1
 scale_max = 0.3
+scale_curve = SubResource("CurveTexture_k53ux")
 scale_over_velocity_curve = SubResource("CurveXYZTexture_rux07")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olsn4"]
