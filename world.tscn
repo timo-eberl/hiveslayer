@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=31 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://duu3jmo73lulu" path="res://center_container.gd" id="7_wse8f"]
 [ext_resource type="PackedScene" uid="uid://bkf03n4vbyt5g" path="res://scenes/enemy_small_ant.tscn" id="8_2o6r5"]
 [ext_resource type="Script" uid="uid://b6kneesubmmfm" path="res://h_slider_2.gd" id="8_ic0uy"]
+[ext_resource type="Script" uid="uid://rtp333mgmlpa" path="res://intro_camera.gd" id="9_2u3nc"]
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
@@ -90,10 +91,39 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%IntroCamera:keep_aspect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_udxuc"]
+resource_name = "In_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%IntroCamera:keep_aspect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_udxuc"]
 _data = {
 &"Black_in": SubResource("Animation_hiqwa"),
+&"In_out": SubResource("Animation_udxuc"),
 &"RESET": SubResource("Animation_2u3nc")
 }
 
@@ -201,7 +231,8 @@ omni_attenuation = 0.152
 
 [node name="IntroCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.438, 2.19524, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.438, 2.195, 0)
+script = ExtResource("9_2u3nc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
