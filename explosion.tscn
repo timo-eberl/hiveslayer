@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bg3nt44ym7iau"]
+
+[ext_resource type="Texture2D" uid="uid://dj0ll0lecuh7p" path="res://Models/Terrain/textures/9h1f38g0.png" id="1_q7epf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vxas0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j4sxf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m5xho"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmxf7"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1.4, 1.4, 1.4, 1)
+albedo_texture = ExtResource("1_q7epf")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_l04k4"]
+offsets = PackedFloat32Array(0.0736196, 0.269939, 0.490798, 0.785276)
+colors = PackedColorArray(0.508727, 0.47365, 3.85046e-07, 1, 0.84, 0.8064, 0.4368, 1, 0.57, 0.25232, 0.1368, 1, 0.700704, 0.228898, 0.133758, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cf70p"]
+gradient = SubResource("Gradient_l04k4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3xjsk"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_cf70p")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_gjpps"]
+
+[node name="Explosion" type="Node3D"]
+
+[node name="grenade" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grenade"]
+visible = false
+mesh = SubResource("SphereMesh_vxas0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grenade"]
+shape = SubResource("SphereShape3D_j4sxf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="grenade"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_m5xho")
+
+[node name="GrenadeDestruction" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="GrenadeDestruction"]
+material_override = SubResource("StandardMaterial3D_kmxf7")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_3xjsk")
+draw_pass_1 = SubResource("QuadMesh_gjpps")

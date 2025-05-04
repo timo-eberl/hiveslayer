@@ -493,7 +493,6 @@ offset_left = -275.0
 offset_bottom = 75.0
 grow_horizontal = 0
 theme = SubResource("Theme_cbp6q")
-text = "Seconds survived:"
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
