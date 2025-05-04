@@ -15,7 +15,7 @@ height = 1.85904
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("takeDamageSound")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 script = ExtResource("1_w32cn")
-movement_speed = 4.0
+movement_speed = 100.0
 gore_scene = ExtResource("2_65g38")
 splash_scene = ExtResource("3_n7ngr")
 takeDamageSound = NodePath("TakeDamageSound")
