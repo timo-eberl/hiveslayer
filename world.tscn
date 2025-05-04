@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://bdnub1asu1soy" path="res://Models/rock.fbx" id="9_wukud"]
 [ext_resource type="PackedScene" uid="uid://die5mv280d38s" path="res://Models/Pillers.fbx" id="10_mc2jv"]
-[ext_resource type="Script" uid="uid://d0cu8lhdn7eyl" path="res://src/flame.gd" id="10_wjb0r"]
+[ext_resource type="Script" path="res://src/flame.gd" id="10_wjb0r"]
 [ext_resource type="Texture2D" uid="uid://di2nylg3vxnmu" path="res://Models/Terrain/textures/T_smoke_flipbook.png" id="11_ikiii"]
 [ext_resource type="Script" uid="uid://dkuoghm2y5uub" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
