@@ -12,7 +12,7 @@ extends CharacterBody3D
 
 var enabled := true
 #Checks how sensitive the mouse is
-var mouse_sensitivity := 0.1
+var mouse_sensitivity := 0.000002
 
 
 @onready var camera : Node3D = %CameraParent
