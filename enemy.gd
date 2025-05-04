@@ -2,6 +2,9 @@ class_name Enemy
 extends CharacterBody3D
 
 @export var movement_speed: float = 2.0
+@export var movement_speed_variance: float = 1.0
+
+var rng = RandomNumberGenerator.new()
 
 @export var gore_scene : PackedScene
 @export var splash_scene : PackedScene
@@ -11,7 +14,8 @@ extends CharacterBody3D
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 
-var rng = RandomNumberGenerator.new()
+@onready var actual_movement_speed := randf_range(movement_speed - movement_speed_variance, movement_speed + movement_speed_variance)
+
 var _health := 3.0
 
 func _ready():
@@ -65,7 +69,7 @@ func _physics_process(delta):
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 
-	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+	velocity = current_agent_position.direction_to(next_path_position) * actual_movement_speed
 	
 	if velocity.length() > 0.0:
 		var z := -velocity.normalized()
