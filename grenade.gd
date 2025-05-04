@@ -18,7 +18,6 @@ func _on_fuse_timer_timeout() -> void:
 	var bodies = $"BlastRadius".get_overlapping_bodies()
 	for obj in bodies:
 		if obj is Enemy:
-			print(1)
 			#This is the function where the enemy recieves damage.
 			#Maybe different but for now it's enemy hit
 			obj.take_damage(damage, self.global_position)

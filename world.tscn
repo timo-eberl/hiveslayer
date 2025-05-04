@@ -346,6 +346,9 @@ libraries = {
 &"": ExtResource("7_udxuc")
 }
 
+[node name="GrenadeCooldown" type="Timer" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
+autostart = true
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.17382, 0.984777, 0, -0.984777, 0.17382, 0, 59.9392, 0)
 visible = false
@@ -676,6 +679,7 @@ stream = ExtResource("21_bc84e")
 volume_db = 10.307
 autoplay = true
 
+[connection signal="timeout" from="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun/GrenadeCooldown" to="SubViewportContainer/SubViewport/Player" method="_on_grenade_cooldown_timeout"]
 [connection signal="drag_ended" from="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" to="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/CenterContainer" method="_on_button_return"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/BoxContainer" method="_on_button_return_to_start_menu"]
