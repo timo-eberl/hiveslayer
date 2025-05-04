@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=29 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://crl42c77lby42" path="res://src/animation_player.gd" id="9_70uel"]
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="11_ic0uy"]
+[ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -62,6 +63,13 @@ emission_energy_multiplier = 2.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k3n1d"]
 radius = 5.0
 height = 20.0
+
+[sub_resource type="Theme" id="Theme_hiqwa"]
+Label/colors/font_shadow_color = Color(1, 1, 1, 1)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 5
+Label/font_sizes/font_size = 50
 
 [node name="World" type="Node3D"]
 
@@ -240,71 +248,84 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("6_ioo17")
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 314.0
-offset_top = 25.0
-offset_right = 729.0
-offset_bottom = 170.0
-text = "Hivemind"
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+script = ExtResource("14_hiqwa")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
-layout_mode = 0
+[node name="Label" type="Label" parent="Control/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -207.5
+offset_right = 207.5
+offset_bottom = 145.0
+grow_horizontal = 2
+theme = SubResource("Theme_hiqwa")
+text = "Hivemind"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/CanvasLayer"]
 offset_right = 1153.0
 offset_bottom = 636.0
 script = ExtResource("7_wse8f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Sound"
 
-[node name="HSlider" type="HSlider" parent="Control/CenterContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 value = 50.0
 
-[node name="Label2" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mouse sensitiviti"
 
-[node name="HSlider2" type="HSlider" parent="Control/CenterContainer/VBoxContainer"]
+[node name="HSlider2" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 min_value = 1.0
 max_value = 5.0
-step = 0.01
+step = 0.25
 value = 2.5
 script = ExtResource("8_ic0uy")
 
-[node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 text = "return"
 
-[node name="BoxContainer" type="BoxContainer" parent="Control"]
+[node name="BoxContainer" type="BoxContainer" parent="Control/CanvasLayer"]
 z_index = 117
-layout_mode = 0
-offset_left = 16.0
-offset_top = 66.0
-offset_right = 128.0
-offset_bottom = 179.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -149.0
+offset_right = 195.0
+grow_vertical = 0
 alignment = 2
 vertical = true
 script = ExtResource("9_k3n1d")
 
-[node name="Button" type="Button" parent="Control/BoxContainer"]
+[node name="Button" type="Button" parent="Control/CanvasLayer/BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.25
 text = "Start"
 
-[node name="Button2" type="Button" parent="Control/BoxContainer"]
+[node name="Button2" type="Button" parent="Control/CanvasLayer/BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Settings"
 
-[connection signal="drag_ended" from="Control/CenterContainer/VBoxContainer/HSlider2" to="Control/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
-[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/CenterContainer" method="_on_button_return"]
-[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="Control/BoxContainer" method="_on_button_return_to_start_menu"]
-[connection signal="pressed" from="Control/BoxContainer/Button" to="Control" method="_on_button_pressed"]
-[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/CenterContainer" method="_on_button_2_pressed"]
-[connection signal="pressed" from="Control/BoxContainer/Button2" to="Control/BoxContainer" method="_on_button_2_pressed"]
+[connection signal="drag_ended" from="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" to="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
+[connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/CenterContainer" method="_on_button_return"]
+[connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/BoxContainer" method="_on_button_return_to_start_menu"]
+[connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button" to="Control/CanvasLayer" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button2" to="Control/CanvasLayer/CenterContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button2" to="Control/CanvasLayer/BoxContainer" method="_on_button_2_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/Enemy/Small Ant"]
