@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=32 format=3 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -70,6 +70,43 @@ Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 5
 Label/font_sizes/font_size = 50
+
+[sub_resource type="Animation" id="Animation_hiqwa"]
+resource_name = "Black_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2u3nc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udxuc"]
+_data = {
+&"Black_in": SubResource("Animation_hiqwa"),
+&"RESET": SubResource("Animation_2u3nc")
+}
 
 [node name="World" type="Node3D"]
 
@@ -319,6 +356,22 @@ text = "Start"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Settings"
+
+[node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationIntro" type="AnimationPlayer" parent="Control/CanvasLayer"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_udxuc")
+}
 
 [connection signal="drag_ended" from="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" to="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/CenterContainer" method="_on_button_return"]
