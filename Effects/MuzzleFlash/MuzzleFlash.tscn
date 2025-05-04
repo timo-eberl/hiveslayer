@@ -155,4 +155,4 @@ light_energy = 16.0
 
 [node name="GunshotSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_eafya")
-volume_db = -10.09
+volume_db = -48.039

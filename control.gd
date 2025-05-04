@@ -1,6 +1,7 @@
 extends Control
 
 @onready var player = %Player
+@onready var playerCamera = %Camera
 
 #Checks if the game has started
 var started := false
@@ -17,6 +18,7 @@ func _on_button_pressed():
 	started = true
 	pause = true
 	$".".visible = false
+	playerCamera.make_current()
 	
 
 	
