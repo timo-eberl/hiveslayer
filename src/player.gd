@@ -20,9 +20,11 @@ var mouse_sensitivity := 0.000002
 @onready var initial_position : Vector3 = self.global_position
 @onready var menu = %Control
 @onready var intro = %AnimationIntro
+@onready var startScreen = %IntroCamera
 
 func _ready() -> void:
 	intro.play("Black_in")
+	startScreen.make_current()
 
 # look with mouse
 func _unhandled_input(event: InputEvent) -> void:
