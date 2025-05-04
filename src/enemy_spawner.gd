@@ -6,6 +6,8 @@ extends Node3D
 @export var distance_min := 200
 @export var distance_max := 220
 
+@onready var gameStarted = %Control
+
 var rng = RandomNumberGenerator.new()
 
 func spawn_group():
@@ -26,8 +28,16 @@ func spawn_enemy(pos : Vector3):
 	self.add_child(enemy)
 	enemy.global_position = pos
 
-func _ready() -> void:
+func _start() -> void:
 	while true:
-		spawn_group()
-		spawn_group()
-		await get_tree().create_timer(10).timeout
+			print(1)
+			spawn_group()
+			spawn_group()
+			await get_tree().create_timer(10).timeout
+			
+			
+
+
+func _on_button_pressed() -> void:
+	
+	_start() # Replace with function body.
