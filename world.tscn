@@ -362,6 +362,7 @@ look_speed = 0.15
 walking_speed = 7.0
 running_speed = 15.0
 jump_velocity = 10.0
+shoot_cooldown = 0.13
 
 [node name="CapsuleMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player"]
 mesh = SubResource("CapsuleMesh_gv5m4")

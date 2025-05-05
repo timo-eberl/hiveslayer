@@ -9,13 +9,19 @@ extends CharacterBody3D
 @export var walking_speed := 5.0
 @export var running_speed := 10.0
 @export var jump_velocity := 5.0
+@export var shoot_cooldown := 0.2
 
 var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
+<<<<<<< HEAD
 var cooldown = 15.0
 
+=======
+var cooldown = 15
+var last_shot_time := 0.0
+>>>>>>> b12ef740867423d8d45dbe7f3e51633c48c86ec8
 
 @onready var camera : Node3D = %CameraParent
 @onready var gun : Gun = %Gun
@@ -70,8 +76,11 @@ func _physics_process(delta: float) -> void:
 		self.velocity.y = jump_velocity
 
 	# Handle shooting
-	if Input.is_action_just_pressed("shoot"):
-		gun.shoot()
+	if Input.is_action_pressed("shoot"):
+		var now := (Time.get_ticks_msec() / 1000.0)
+		if now - last_shot_time > shoot_cooldown:
+			gun.shoot()
+			last_shot_time = now
 	if Input.is_action_just_pressed("Throw") and cooldown >= 15:
 		cooldown = 0
 		gun.throw()
