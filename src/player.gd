@@ -15,7 +15,7 @@ var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
-var cooldown = 15.0
+var cooldown = 5.0
 
 var last_shot_time := 0.0
 
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		if now - last_shot_time > shoot_cooldown:
 			gun.shoot()
 			last_shot_time = now
-	if Input.is_action_just_pressed("Throw") and cooldown >= 15:
+	if Input.is_action_just_pressed("Throw") and cooldown >= 5:
 		cooldown = 0
 		gun.throw()
 
