@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=80 format=4 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
@@ -359,6 +359,7 @@ look_speed = 0.15
 walking_speed = 7.0
 running_speed = 15.0
 jump_velocity = 10.0
+shoot_cooldown = 0.13
 
 [node name="CapsuleMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player"]
 mesh = SubResource("CapsuleMesh_gv5m4")
