@@ -38,6 +38,8 @@ radius = 4.13442
 [node name="grenade" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_gju2f")
 continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 50
 script = ExtResource("1_24g56")
 explosionSound = ExtResource("2_o1udh")
 
@@ -86,6 +88,7 @@ autostart = true
 
 [node name="Explosion" parent="." instance=ExtResource("3_ga5sg")]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]
 
 [editable path="Grenade"]
