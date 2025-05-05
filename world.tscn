@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bq7cs1ih760en" path="res://UI/IMG_2389.png" id="27_6ah6f"]
 [ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
 [ext_resource type="PackedScene" uid="uid://cvgxpv4v17ve" path="res://Effects/Gore/Gore.tscn" id="36_my276"]
-[ext_resource type="Script" path="res://src/vfx_first_time.gd" id="36_ryup7"]
+[ext_resource type="Script" uid="uid://dbgtwqyhbqhvk" path="res://src/vfx_first_time.gd" id="36_ryup7"]
 [ext_resource type="PackedScene" uid="uid://f0vgmsnu6426" path="res://explosion.tscn" id="37_yx0jh"]
 [ext_resource type="PackedScene" uid="uid://c2cph0tlbeqgu" path="res://Effects/GroundParticles/groundParticles.tscn" id="38_yx0jh"]
 [ext_resource type="PackedScene" uid="uid://dn2kiwx2ckkky" path="res://Effects/BloodSplash/bloodSplash.tscn" id="39_1ew0l"]
@@ -1155,7 +1155,7 @@ offset_bottom = 94.0
 grow_vertical = 0
 scale = Vector2(0.224263, 0.224263)
 mouse_filter = 2
-max_value = 5.0
+max_value = 10.0
 step = 0.1
 value = 5.0
 fill_mode = 4
