@@ -1,5 +1,6 @@
-[gd_scene load_steps=78 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=79 format=4 uid="uid://2rascp5n01m0"]
 
+[ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dof2ev01r3arp" path="res://scenes/Bullet.tscn" id="3_036b0"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://dtvpxiyn2qcvq" path="res://h_slider.gd" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://3a6kv51dwhm4" path="res://canvas_layer.gd" id="14_hiqwa"]
 [ext_resource type="PackedScene" uid="uid://dnjy5frf6sckf" path="res://Models/cityscape.fbx" id="14_il2jm"]
+[ext_resource type="PackedScene" uid="uid://dqxi1f3j164vx" path="res://scenes/enemy_big_ant.tscn" id="18_o3ebs"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
 [ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
 
@@ -188,7 +190,7 @@ radius = 5.0
 height = 20.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mc2jv"]
-radius = 2.02
+radius = 2.0
 height = 13.64
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbp6q"]
@@ -219,8 +221,8 @@ emission_shape_offset = Vector3(250, 0, 250)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 90.35, 0.785)
 emission_ring_height = 18.86
-emission_ring_radius = 173.95
-emission_ring_inner_radius = 108.74
+emission_ring_radius = 162.45
+emission_ring_inner_radius = 87.14
 emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
@@ -594,6 +596,7 @@ omni_range = 112.428
 omni_attenuation = 0.44
 
 [node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/Flame"]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Flame/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.3011, 0)
@@ -620,9 +623,10 @@ draw_pass_1 = SubResource("QuadMesh_bc84e")
 [node name="EnemySpawner" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 167.753, 0, -176.546)
 script = ExtResource("12_cbp6q")
+possible_enemies = Array[PackedScene]([ExtResource("8_2o6r5"), ExtResource("1_4h6ng"), ExtResource("18_o3ebs")])
 enemy_scene = ExtResource("8_2o6r5")
-distance_min = 100
-distance_max = 137
+distance_min = 80
+distance_max = 90
 metadata/_custom_type_script = "uid://dkuoghm2y5uub"
 
 [node name="cityscape" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_il2jm")]

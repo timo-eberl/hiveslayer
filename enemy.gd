@@ -11,12 +11,13 @@ var rng = RandomNumberGenerator.new()
 @export var takeDamageSound : AudioStreamPlayer3D
 @export var deathSound : AudioStreamWAV
 @onready var center : Node3D = $Center
+@export var max_health := 3.0
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 
 @onready var actual_movement_speed := randf_range(movement_speed - movement_speed_variance, movement_speed + movement_speed_variance)
 
-var _health := 3.0
+@onready var _health := max_health
 
 func _ready():
 	# Make sure to not await during _ready.
