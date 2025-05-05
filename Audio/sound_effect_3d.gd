@@ -11,7 +11,7 @@ static func SoundPlayPosition(parent, position: Vector3, soundStream: AudioStrea
 	soundEffect.pitch_scale = pitch
 	soundEffect.volume_db = volume
 	soundEffect.play()
-	
+	return soundEffect
 	
 func _process(delta: float) -> void:
 	if !playing:
