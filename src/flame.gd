@@ -6,6 +6,7 @@ extends Node3D
 
 @onready var beam_mesh : MeshInstance3D = $MeshInstance3D
 @onready var beam_mesh_initial_scale : Vector3 = beam_mesh.scale
+@export var take_damage_sound: AudioStreamWAV
 
 @onready var health : float = max_health
 
@@ -16,6 +17,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func take_damage():
 	health -= 1.0
+	var sound = SoundEffect3D.SoundPlayPosition(get_tree().root, global_position, take_damage_sound, 1 + health * 0.1, 40)
+	#sound.max_db = 0
 
 func _process(delta: float) -> void:
 	health += regen_rate * delta
