@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dlcqpdcblgxm" path="res://Models/rectangles texture.fbx" id="9_qktwf"]
 [ext_resource type="PackedScene" uid="uid://die5mv280d38s" path="res://Models/Pillers.fbx" id="10_mc2jv"]
-[ext_resource type="Material" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
+[ext_resource type="Material" uid="uid://dkh1lhbt7a33c" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
 [ext_resource type="Script" uid="uid://d0cu8lhdn7eyl" path="res://src/flame.gd" id="10_wjb0r"]
 [ext_resource type="Texture2D" uid="uid://di2nylg3vxnmu" path="res://Models/Terrain/textures/T_smoke_flipbook.png" id="11_ikiii"]
 [ext_resource type="Script" uid="uid://dkuoghm2y5uub" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
@@ -1153,7 +1153,7 @@ offset_bottom = 94.0
 grow_vertical = 0
 scale = Vector2(0.224263, 0.224263)
 mouse_filter = 2
-max_value = 15.0
+max_value = 5.0
 step = 0.1
 value = 5.0
 fill_mode = 4
