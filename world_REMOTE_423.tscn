@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=89 format=4 uid="uid://1mx4l63ygi3r"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
@@ -31,9 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://dqxi1f3j164vx" path="res://scenes/enemy_big_ant.tscn" id="18_o3ebs"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
 [ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
-[ext_resource type="FontFile" uid="uid://jj3qqmfvqtgq" path="res://Models/Textures/MatrixtypeDisplay-9MyE5.ttf" id="24_jjr1n"]
-[ext_resource type="Texture2D" uid="uid://bam2wcfnap3oy" path="res://Models/Textures/progress-bar-circle.png" id="26_o3ebs"]
-[ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -661,7 +658,6 @@ libraries = {
 }
 
 [node name="GrenadeCooldown" type="Timer" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
-wait_time = 0.05
 autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
@@ -1141,11 +1137,8 @@ offset_right = 207.5
 offset_bottom = 145.0
 grow_horizontal = 2
 theme = SubResource("Theme_hiqwa")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 80
 text = "Hivemind"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Control/CanvasLayer"]
 anchors_preset = 8
@@ -1168,8 +1161,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_2u3nc")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 30
 text = "Sound"
 
 [node name="Master" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
@@ -1184,8 +1175,6 @@ script = ExtResource("14_2u3nc")
 [node name="Label2" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_ikiii")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 30
 text = "Mouse sensitiviti"
 
 [node name="HSlider2" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
@@ -1201,8 +1190,6 @@ script = ExtResource("8_ic0uy")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 25
 text = "return"
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/CanvasLayer"]
@@ -1215,7 +1202,6 @@ offset_top = -74.0
 offset_right = 266.0
 offset_bottom = 75.0
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
 alignment = 2
 vertical = true
 script = ExtResource("9_k3n1d")
@@ -1224,15 +1210,11 @@ script = ExtResource("9_k3n1d")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.25
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 20
 text = "Start"
 
 [node name="Button2" type="Button" parent="Control/CanvasLayer/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 20
 text = "Settings"
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
@@ -1270,43 +1252,10 @@ offset_left = -275.0
 offset_bottom = 75.0
 grow_horizontal = 0
 theme = SubResource("Theme_cbp6q")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
 unique_name_in_owner = true
-
-[node name="GrenadeCooldown" type="Control" parent="TimerNode/CanvasTime"]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="Cooldown" type="TextureProgressBar" parent="TimerNode/CanvasTime/GrenadeCooldown"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -172.0
-offset_right = 135.0
-offset_bottom = -44.0
-grow_vertical = 0
-scale = Vector2(1.2, 1.2)
-max_value = 15.0
-step = 0.1
-value = 5.0
-fill_mode = 4
-texture_under = ExtResource("26_o3ebs")
-texture_over = ExtResource("27_k83mh")
-texture_progress = ExtResource("26_o3ebs")
-tint_under = Color(0.07, 0.07, 0.07, 0.576471)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bc84e")

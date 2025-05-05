@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=89 format=4 uid="uid://nifqqgp8y2wa"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
