@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=93 format=4 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dlcqpdcblgxm" path="res://Models/rectangles texture.fbx" id="9_qktwf"]
 [ext_resource type="PackedScene" uid="uid://die5mv280d38s" path="res://Models/Pillers.fbx" id="10_mc2jv"]
-[ext_resource type="Material" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
+[ext_resource type="Material" uid="uid://dkh1lhbt7a33c" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
 [ext_resource type="Script" uid="uid://d0cu8lhdn7eyl" path="res://src/flame.gd" id="10_wjb0r"]
 [ext_resource type="Texture2D" uid="uid://di2nylg3vxnmu" path="res://Models/Terrain/textures/T_smoke_flipbook.png" id="11_ikiii"]
 [ext_resource type="Script" uid="uid://dkuoghm2y5uub" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
 [ext_resource type="FontFile" uid="uid://jj3qqmfvqtgq" path="res://Models/Textures/MatrixtypeDisplay-9MyE5.ttf" id="24_jjr1n"]
 [ext_resource type="Texture2D" uid="uid://bam2wcfnap3oy" path="res://Models/Textures/progress-bar-circle.png" id="26_o3ebs"]
+[ext_resource type="Texture2D" uid="uid://bq7cs1ih760en" path="res://UI/IMG_2389.png" id="27_6ah6f"]
 [ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
@@ -499,6 +500,14 @@ anim_speed_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_bc84e"]
 
+[sub_resource type="Theme" id="Theme_cbp6q"]
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 5
+Label/font_sizes/font_size = 30
+Label/styles/normal = null
+
 [sub_resource type="Theme" id="Theme_hiqwa"]
 Label/colors/font_shadow_color = Color(0, 0, 0, 1)
 Label/constants/shadow_offset_x = 1
@@ -579,14 +588,6 @@ _data = {
 &"In_out": SubResource("Animation_udxuc"),
 &"RESET": SubResource("Animation_2u3nc")
 }
-
-[sub_resource type="Theme" id="Theme_cbp6q"]
-Label/colors/font_shadow_color = Color(0, 0, 0, 1)
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/constants/shadow_outline_size = 5
-Label/font_sizes/font_size = 30
-Label/styles/normal = null
 
 [node name="World" type="Node3D"]
 
@@ -1018,7 +1019,7 @@ shape = SubResource("CapsuleShape3D_mc2jv")
 
 [node name="IntroCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.438, 2.195, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 195, 12.284, -169.986)
 script = ExtResource("9_2u3nc")
 
 [node name="Smoke" type="GPUParticles3D" parent="SubViewportContainer/SubViewport"]
@@ -1091,6 +1092,75 @@ omni_attenuation = 0.268
 
 [node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.7374, 0)
+
+[node name="TimerNode" type="Control" parent="SubViewportContainer/SubViewport/OmniLight3D3"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("19_cbp6q")
+
+[node name="CanvasTime" type="CanvasLayer" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode"]
+unique_name_in_owner = true
+
+[node name="TimeSurvived" type="Label" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 3.75
+offset_right = 215.0
+offset_bottom = 78.75
+grow_horizontal = 0
+scale = Vector2(0.206762, 0.206762)
+theme = SubResource("Theme_cbp6q")
+theme_override_fonts/font = ExtResource("24_jjr1n")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime"]
+unique_name_in_owner = true
+
+[node name="GrenadeCooldown" type="Control" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Cooldown" type="TextureProgressBar" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime/GrenadeCooldown"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.5
+offset_top = -34.0
+offset_right = 132.5
+offset_bottom = 94.0
+grow_vertical = 0
+scale = Vector2(0.224263, 0.224263)
+mouse_filter = 2
+max_value = 15.0
+step = 0.1
+value = 5.0
+fill_mode = 4
+texture_under = ExtResource("26_o3ebs")
+texture_over = ExtResource("27_k83mh")
+texture_progress = ExtResource("26_o3ebs")
+tint_under = Color(0.07, 0.07, 0.07, 0.576471)
+
+[node name="Img2389" type="Sprite2D" parent="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime/GrenadeCooldown"]
+position = Vector2(47.25, 20.75)
+scale = Vector2(0.0264684, 0.0264684)
+texture = ExtResource("27_6ah6f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("5_k3n1d")
@@ -1261,63 +1331,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_udxuc")
 }
 
-[node name="TimerNode" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("19_cbp6q")
-
-[node name="CanvasTime" type="CanvasLayer" parent="TimerNode"]
-unique_name_in_owner = true
-
-[node name="TimeSurvived" type="Label" parent="TimerNode/CanvasTime"]
-unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -275.0
-offset_bottom = 75.0
-grow_horizontal = 0
-theme = SubResource("Theme_cbp6q")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
-unique_name_in_owner = true
-
-[node name="GrenadeCooldown" type="Control" parent="TimerNode/CanvasTime"]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="Cooldown" type="TextureProgressBar" parent="TimerNode/CanvasTime/GrenadeCooldown"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -172.0
-offset_right = 135.0
-offset_bottom = -44.0
-grow_vertical = 0
-scale = Vector2(1.2, 1.2)
-max_value = 15.0
-step = 0.1
-value = 5.0
-fill_mode = 4
-texture_under = ExtResource("26_o3ebs")
-texture_over = ExtResource("27_k83mh")
-texture_progress = ExtResource("26_o3ebs")
-tint_under = Color(0.07, 0.07, 0.07, 0.576471)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bc84e")
 volume_db = 10.307
@@ -1325,6 +1338,7 @@ autoplay = true
 
 [connection signal="timeout" from="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun/GrenadeCooldown" to="SubViewportContainer/SubViewport/Player" method="_on_grenade_cooldown_timeout"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/Flame/Area3D" to="SubViewportContainer/SubViewport/Flame" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime/Timer" to="Control" method="_on_timer_timeout"]
 [connection signal="drag_ended" from="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" to="Control/CanvasLayer/CenterContainer/VBoxContainer/HSlider2" method="_on_drag_ended"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/CenterContainer" method="_on_button_return"]
 [connection signal="pressed" from="Control/CanvasLayer/CenterContainer/VBoxContainer/Button" to="Control/CanvasLayer/BoxContainer" method="_on_button_return_to_start_menu"]
@@ -1333,7 +1347,6 @@ autoplay = true
 [connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button" to="Control/CanvasLayer" method="_on_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button2" to="Control/CanvasLayer/CenterContainer" method="_on_button_2_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/BoxContainer/Button2" to="Control/CanvasLayer/BoxContainer" method="_on_button_2_pressed"]
-[connection signal="timeout" from="TimerNode/CanvasTime/Timer" to="Control" method="_on_timer_timeout"]
 
 [editable path="SubViewportContainer/SubViewport/NavMesh/Terrain_v2"]
 [editable path="SubViewportContainer/SubViewport/NavMesh/Obstacles/rectangles texture"]
