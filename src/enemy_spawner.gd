@@ -4,6 +4,8 @@ extends Node3D
 @export var possible_enemies : Array[PackedScene]
 @export var enemy_scene : PackedScene
 
+@export var spawn_points : Array[Node3D]
+
 @export var distance_min := 200
 @export var distance_max := 220
 
@@ -12,11 +14,13 @@ extends Node3D
 var rng = RandomNumberGenerator.new()
 
 func spawn_group():
-	var angle := rng.randf_range(0, TAU)
-	var unit_circle_pos := Vector2(cos(angle), sin(angle))
-	var distance := rng.randf_range(distance_min, distance_max)
-	var pos2d := unit_circle_pos * distance
-	var group_pos := Vector3(pos2d.x, 0, pos2d.y) + self.global_position
+	#var angle := rng.randf_range(0, TAU)
+	#var unit_circle_pos := Vector2(cos(angle), sin(angle))
+	#var distance := rng.randf_range(distance_min, distance_max)
+	#var pos2d := unit_circle_pos * distance
+	#var group_pos := Vector3(pos2d.x, 0, pos2d.y) + self.global_position
+	
+	var group_pos := spawn_points[randi() % spawn_points.size()].global_position
 	
 	var group_size := 6
 	for i in range(group_size):
