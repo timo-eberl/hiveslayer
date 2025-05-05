@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=79 format=4 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://rluhc1evxul5" path="res://src/camera_shake.gd" id="2_dwbse"]
@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://dnjy5frf6sckf" path="res://Models/cityscape.fbx" id="14_il2jm"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
 [ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
+[ext_resource type="Texture2D" uid="uid://bam2wcfnap3oy" path="res://Models/Textures/progress-bar-circle.png" id="26_o3ebs"]
+[ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -400,6 +402,7 @@ libraries = {
 }
 
 [node name="GrenadeCooldown" type="Timer" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
+wait_time = 0.05
 autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
@@ -819,6 +822,36 @@ horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
 unique_name_in_owner = true
+
+[node name="GrenadeCooldown" type="Control" parent="TimerNode/CanvasTime"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Cooldown" type="TextureProgressBar" parent="TimerNode/CanvasTime/GrenadeCooldown"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -260.0
+offset_right = 132.0
+offset_bottom = -132.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+max_value = 15.0
+step = 0.1
+value = 5.0
+fill_mode = 4
+texture_under = ExtResource("26_o3ebs")
+texture_over = ExtResource("27_k83mh")
+texture_progress = ExtResource("26_o3ebs")
+tint_under = Color(0.07, 0.07, 0.07, 0.576471)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bc84e")
