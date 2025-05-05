@@ -15,13 +15,10 @@ var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
-<<<<<<< HEAD
 var cooldown = 15.0
 
-=======
-var cooldown = 15
 var last_shot_time := 0.0
->>>>>>> b12ef740867423d8d45dbe7f3e51633c48c86ec8
+
 
 @onready var camera : Node3D = %CameraParent
 @onready var gun : Gun = %Gun
