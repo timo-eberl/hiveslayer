@@ -76,6 +76,7 @@ metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
 
 [node name="BlastRadius" type="Area3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlastRadius"]
 shape = SubResource("SphereShape3D_ga5sg")
