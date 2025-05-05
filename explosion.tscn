@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg3nt44ym7iau"]
+[gd_scene load_steps=25 format=3 uid="uid://f0vgmsnu6426"]
 
 [ext_resource type="Script" uid="uid://clxaoq21kqkcl" path="res://src/destroy_timer.gd" id="1_j4sxf"]
 [ext_resource type="Texture2D" uid="uid://dj0ll0lecuh7p" path="res://Models/Terrain/textures/9h1f38g0.png" id="1_q7epf"]
@@ -28,13 +28,20 @@ colors = PackedColorArray(0.508727, 0.47365, 3.85046e-07, 1, 0.84, 0.8064, 0.436
 gradient = SubResource("Gradient_l04k4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3xjsk"]
+lifetime_randomness = 0.48
 particle_flag_rotate_y = true
 emission_shape = 1
 emission_sphere_radius = 0.1
 angle_min = -180.0
 angle_max = 180.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 4.92
+initial_velocity_max = 28.57
 gravity = Vector3(0, 0, 0)
-scale_min = 10.0
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 5.0
 scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_cf70p")
 anim_speed_min = 1.0
@@ -42,16 +49,149 @@ anim_speed_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_gjpps"]
 
+[sub_resource type="Curve" id="Curve_iuruv"]
+_data = [Vector2(0, 1), 0.0, -2.91726, 0, 0, Vector2(1, 0), -0.852888, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b02un"]
+curve = SubResource("Curve_iuruv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jttv8"]
+lifetime_randomness = 0.6
+direction = Vector3(0, 1, 0)
+spread = 122.539
+initial_velocity_min = 10.0
+initial_velocity_max = 98.42
+gravity = Vector3(0, 0, 0)
+damping_min = 9.231
+damping_max = 9.231
+scale_min = 57.95
+scale_max = 94.39
+scale_curve = SubResource("CurveTexture_b02un")
+
+[sub_resource type="Gradient" id="Gradient_36sm1"]
+offsets = PackedFloat32Array(0, 0.385965, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.850855, 0.583088, 0.435387, 0.403509, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bpt1"]
+gradient = SubResource("Gradient_36sm1")
+fill = 1
+fill_from = Vector2(0.494382, 0.477528)
+fill_to = Vector2(0.735955, 0.235955)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2o8r"]
+transparency = 1
+blend_mode = 1
+albedo_texture = SubResource("GradientTexture2D_0bpt1")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_j2a3p"]
+material = SubResource("StandardMaterial3D_t2o8r")
+
+[sub_resource type="Curve" id="Curve_j4sxf"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 2.47191), 0.0, -0.308705, 0, 0, Vector2(0.669118, 1.16854), 0.0, 0.0, 0, 0, Vector2(0.963235, 0), -4.80257, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m5xho"]
+curve = SubResource("Curve_j4sxf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmxf7"]
+lifetime_randomness = 0.69
+angle_min = 1.07288e-05
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 72.794
+initial_velocity_min = 30.0
+initial_velocity_max = 226.05
+gravity = Vector3(0, -50, 0)
+damping_min = 100.0
+damping_max = 100.195
+scale_min = 4.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_m5xho")
+
+[sub_resource type="Gradient" id="Gradient_cf70p"]
+offsets = PackedFloat32Array(0.00877193, 0.263158, 0.640351, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.895781, 0.767981, 0.426278, 0.879649, 0.471867, 0.120919, 0.0370164, 0.570175, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3xjsk"]
+gradient = SubResource("Gradient_cf70p")
+fill = 2
+fill_from = Vector2(0.505618, 0.522472)
+fill_to = Vector2(0.910112, 0.140449)
+
+[sub_resource type="Gradient" id="Gradient_gjpps"]
+offsets = PackedFloat32Array(0.00877193, 0.263158, 0.640351, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.895781, 0.767981, 0.426278, 0.879649, 0.471867, 0.120919, 0.0370164, 0.570175, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ew515"]
+gradient = SubResource("Gradient_gjpps")
+fill = 2
+fill_from = Vector2(0.505618, 0.522472)
+fill_to = Vector2(0.910112, 0.140449)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cxdk"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_3xjsk")
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 11.66
+emission_texture = SubResource("GradientTexture2D_ew515")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4lvei"]
+material = SubResource("StandardMaterial3D_6cxdk")
+size = Vector2(0.05, 0.05)
+
 [node name="Explosion" type="Node3D"]
 script = ExtResource("1_j4sxf")
 lifetimeSeconds = 1.915
 
 [node name="GrenadeExplosion" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63794, 0)
 material_override = SubResource("StandardMaterial3D_kmxf7")
 emitting = false
-amount = 20
+amount = 30
+lifetime = 0.86
 one_shot = true
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3xjsk")
 draw_pass_1 = SubResource("QuadMesh_gjpps")
 script = ExtResource("2_vxas0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 30.0
+omni_range = 24.6
+omni_attenuation = -4.333
+script = ExtResource("1_j4sxf")
+lifetimeSeconds = 0.1
+
+[node name="Flash" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.877842, 0)
+emitting = false
+amount = 30
+lifetime = 0.27
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jttv8")
+draw_pass_1 = SubResource("QuadMesh_j2a3p")
+
+[node name="BigSparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481774, 0)
+emitting = false
+amount = 30
+lifetime = 4.57
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kmxf7")
+draw_pass_1 = SubResource("QuadMesh_4lvei")

@@ -2,6 +2,7 @@ class_name Gun
 extends Node3D
 
 @export var bullet_scene : PackedScene
+@export var throw_sound: AudioStreamWAV
 
 @onready var bullets : Node3D = %Bullets
 @onready var camera : CameraShake = %Camera
@@ -26,17 +27,18 @@ func shoot() -> void:
 	animation_player.play("recoil")
 	
 func throw():
-		var grenadeins = grenade.instantiate()
-		grenadeins.global_position = bullet_spawn.global_position
-		get_tree().current_scene.add_child(grenadeins)
-		
-		
-		var force = -18
-		var up_direction = 3.5
-		
-		var player_rotation = camera.global_transform.basis.z.normalized()
-		
-		grenadeins.apply_central_impulse(player_rotation * force + Vector3(0, up_direction, 0))
+	SoundEffect3D.SoundPlayPosition(get_tree().root, global_position, throw_sound, randf_range(0.9, 1.1), 0)
+	var grenadeins = grenade.instantiate()
+	grenadeins.global_position = bullet_spawn.global_position
+	get_tree().current_scene.add_child(grenadeins)
+	
+	
+	var force = -18
+	var up_direction = 3.5
+	
+	var player_rotation = camera.global_transform.basis.z.normalized()
+	
+	grenadeins.apply_central_impulse(player_rotation * force + Vector3(0, up_direction, 0))
 	
 	
 	
