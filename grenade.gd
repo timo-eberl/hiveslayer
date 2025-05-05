@@ -2,6 +2,9 @@ extends RigidBody3D
 @export var explosionSound: AudioStreamWAV
 var damage = 50
 var explosion = preload("res://explosion.tscn")
+	
+func _ready() -> void:
+	$".".add_constant_torque(Vector3(0.2,0.1,0.1))
 
 func _on_body_entered(body):
 	explode()

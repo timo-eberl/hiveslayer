@@ -12,6 +12,8 @@ extends Node3D
 
 var grenade = preload("res://grenade.tscn")
 
+
+
 func shoot() -> void:
 	var bullet : RigidBody3D = bullet_scene.instantiate()
 	bullets.add_child(bullet)
@@ -33,12 +35,15 @@ func throw():
 	get_tree().current_scene.add_child(grenadeins)
 	
 	
-	var force = -18
+	var force = -28
 	var up_direction = 3.5
+	
 	
 	var player_rotation = camera.global_transform.basis.z.normalized()
 	
 	grenadeins.apply_central_impulse(player_rotation * force + Vector3(0, up_direction, 0))
+	
+	
 	
 	
 	
