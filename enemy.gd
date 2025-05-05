@@ -27,8 +27,16 @@ func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 
-	# Now that the navigation map is no longer empty, set the movement target.
-	nav_agent.set_target_position(Globals.flame.global_position)
+	while true:
+		var dist := Globals.flame.global_position.distance_to(self.global_position)
+		if dist < 15:
+			dist = 0
+		dist *= 0.7
+		var target_pos := Globals.flame.global_position \
+			+ Vector3(rng.randf_range(0,dist), 0, rng.randf_range(0,dist))
+		# Now that the navigation map is no longer empty, set the movement target.
+		nav_agent.set_target_position(target_pos)
+		await get_tree().create_timer(3).timeout
 
 func take_damage(amount : float, hit_position : Vector3):
 	_health -= amount
@@ -69,8 +77,8 @@ func _physics_process(delta):
 
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
-
-	velocity = current_agent_position.direction_to(next_path_position) * actual_movement_speed
+	var dir := current_agent_position.direction_to(next_path_position)
+	velocity = (dir) * actual_movement_speed
 	
 	if velocity.length() > 0.0:
 		var z := -velocity.normalized()
