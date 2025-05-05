@@ -4,12 +4,13 @@ var damage = 50
 var explosion = preload("res://explosion.tscn")
 
 func _on_body_entered(body):
-	linear_damp = 0.3
-	angular_damp = 1.5
+	explode()
 	
 
-
 func _on_fuse_timer_timeout() -> void:
+	explode()
+	
+func explode():
 	var explosion_instance = explosion.instantiate()
 	get_tree().root.add_child(explosion_instance)
 	explosion_instance.global_position = global_position

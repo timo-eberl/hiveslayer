@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=99 format=4 uid="uid://2rascp5n01m0"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
@@ -36,6 +36,11 @@
 [ext_resource type="Texture2D" uid="uid://bam2wcfnap3oy" path="res://Models/Textures/progress-bar-circle.png" id="26_o3ebs"]
 [ext_resource type="Texture2D" uid="uid://bq7cs1ih760en" path="res://UI/IMG_2389.png" id="27_6ah6f"]
 [ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
+[ext_resource type="PackedScene" uid="uid://cvgxpv4v17ve" path="res://Effects/Gore/Gore.tscn" id="36_my276"]
+[ext_resource type="Script" path="res://src/vfx_first_time.gd" id="36_ryup7"]
+[ext_resource type="PackedScene" uid="uid://f0vgmsnu6426" path="res://explosion.tscn" id="37_yx0jh"]
+[ext_resource type="PackedScene" uid="uid://c2cph0tlbeqgu" path="res://Effects/GroundParticles/groundParticles.tscn" id="38_yx0jh"]
+[ext_resource type="PackedScene" uid="uid://dn2kiwx2ckkky" path="res://Effects/BloodSplash/bloodSplash.tscn" id="39_1ew0l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -1338,6 +1343,43 @@ stream = ExtResource("21_bc84e")
 volume_db = 10.307
 autoplay = true
 
+[node name="VFXFirstTime" type="Node3D" parent="."]
+script = ExtResource("36_ryup7")
+
+[node name="Gore" parent="VFXFirstTime" instance=ExtResource("36_my276")]
+
+[node name="Explosion" parent="VFXFirstTime" instance=ExtResource("37_yx0jh")]
+
+[node name="GrenadeExplosion" parent="VFXFirstTime/Explosion" index="0"]
+emitting = true
+one_shot = false
+
+[node name="GroundParticles" parent="VFXFirstTime" instance=ExtResource("38_yx0jh")]
+
+[node name="DirtBalls" parent="VFXFirstTime/GroundParticles" index="0"]
+emitting = true
+one_shot = false
+
+[node name="Dust" parent="VFXFirstTime/GroundParticles" index="1"]
+emitting = true
+one_shot = false
+
+[node name="MuzzleFlash" parent="VFXFirstTime" instance=ExtResource("4_036b0")]
+
+[node name="BigSparks" parent="VFXFirstTime/MuzzleFlash" index="0"]
+emitting = true
+one_shot = false
+
+[node name="SmallSparks" parent="VFXFirstTime/MuzzleFlash/BigSparks" index="0"]
+emitting = true
+one_shot = false
+
+[node name="Flash" parent="VFXFirstTime/MuzzleFlash/BigSparks" index="1"]
+emitting = true
+one_shot = false
+
+[node name="BloodSplash" parent="VFXFirstTime" instance=ExtResource("39_1ew0l")]
+
 [connection signal="timeout" from="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun/GrenadeCooldown" to="SubViewportContainer/SubViewport/Player" method="_on_grenade_cooldown_timeout"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/Flame/Area3D" to="SubViewportContainer/SubViewport/Flame" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/OmniLight3D3/TimerNode/CanvasTime/Timer" to="Control" method="_on_timer_timeout"]
@@ -1358,3 +1400,6 @@ autoplay = true
 [editable path="SubViewportContainer/SubViewport/NavMesh/Obstacles/cliff3"]
 [editable path="SubViewportContainer/SubViewport/NavMesh/Obstacles/Pillers"]
 [editable path="SubViewportContainer/SubViewport/cityscape"]
+[editable path="VFXFirstTime/Explosion"]
+[editable path="VFXFirstTime/GroundParticles"]
+[editable path="VFXFirstTime/MuzzleFlash"]
