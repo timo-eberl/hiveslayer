@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="1_gju2f"]
 [ext_resource type="AudioStream" uid="uid://drgjx7gap5l8q" path="res://Audio/sound_truth_bomb.wav" id="2_o1udh"]
 [ext_resource type="PackedScene" uid="uid://crlbodtkjhpxb" path="res://Models/Grenade.fbx" id="3_aeyyv"]
-[ext_resource type="PackedScene" uid="uid://bg3nt44ym7iau" path="res://explosion.tscn" id="3_ga5sg"]
+[ext_resource type="PackedScene" path="res://explosion.tscn" id="3_ga5sg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gju2f"]
 bounce = 0.4
