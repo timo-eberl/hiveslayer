@@ -1,8 +1,10 @@
 extends Camera3D
 
 func _ready() -> void:
-	$".".position = Vector3(195,2.1,-120)
+	$".".position = Vector3(195,12.3,-170)
 
 func _process(delta: float) -> void:
-	if $".".position.z < -70:
-		$".".position.z += 0.25
+	#195
+	#257
+	if $".".position.x <= 257:
+		$".".position.x += 0.25

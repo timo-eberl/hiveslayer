@@ -1019,7 +1019,7 @@ shape = SubResource("CapsuleShape3D_mc2jv")
 
 [node name="IntroCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.438, 2.195, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 195, 12.284, -169.986)
 script = ExtResource("9_2u3nc")
 
 [node name="Smoke" type="GPUParticles3D" parent="SubViewportContainer/SubViewport"]
