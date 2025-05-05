@@ -9,11 +9,12 @@
 [ext_resource type="AudioStream" uid="uid://d0sp178jr8a7g" path="res://Audio/sound_hit_enemy.wav" id="6_n7ngr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w32cn"]
-radius = 0.467117
-height = 1.85904
+radius = 0.530607
+height = 1.90625
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("takeDamageSound")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+collision_layer = 2
 script = ExtResource("1_w32cn")
 movement_speed = 5.0
 gore_scene = ExtResource("2_65g38")
@@ -22,17 +23,17 @@ takeDamageSound = NodePath("TakeDamageSound")
 deathSound = ExtResource("4_dguvf")
 
 [node name="Center" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167585, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0421373, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 use_3d_avoidance = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.465493, -3.95782e-09)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0978632, -2.00274e-08)
 shape = SubResource("CapsuleShape3D_w32cn")
 
 [node name="Small Ant" parent="." instance=ExtResource("2_i6cgb")]
-transform = Transform3D(-8.54121e-07, 0, 19.54, 0, 19.54, 0, -19.54, 0, -8.54121e-07, 0.0428788, -0.181696, -0.239788)
+transform = Transform3D(-8.54121e-07, 0, 19.54, 0, 19.54, 0, -19.54, 0, -8.54121e-07, 0.0428788, -0.446062, -0.239788)
 
 [node name="pCube6" parent="Small Ant/group3" index="0"]
 transform = Transform3D(0.821191, -3.97612e-11, -0.570653, 3.7427e-13, 1, -6.9138e-11, 0.570653, 5.65619e-11, 0.821191, -0.0269055, 0.0300596, 0.0109327)
