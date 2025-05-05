@@ -991,7 +991,7 @@ shape = SubResource("ConcavePolygonShape3D_6ah6f")
 
 [node name="Flame" type="Node3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(0.78826, 0, 0, 0, 0.78826, 0, 0, 0, 0.78826, 162.182, 30.5627, -170.407)
+transform = Transform3D(0.78826, 0, 0, 0, 0.78826, 0, 0, 0, 0.78826, 162.182, 13.4021, -170.407)
 script = ExtResource("10_wjb0r")
 take_damage_sound = ExtResource("13_4h6ng")
 
@@ -1001,7 +1001,7 @@ material_override = SubResource("StandardMaterial3D_ic0uy")
 mesh = SubResource("CapsuleMesh_k3n1d")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Flame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.5953, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.8742, 0)
 light_color = Color(0.630407, 0.923623, 1, 1)
 light_energy = 16.0
 light_specular = 0.039
@@ -1013,7 +1013,7 @@ omni_attenuation = 0.44
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Flame/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.3011, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.839, 0)
 shape = SubResource("CapsuleShape3D_mc2jv")
 
 [node name="IntroCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
@@ -1034,11 +1034,12 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_26xuy")
 draw_pass_1 = SubResource("QuadMesh_bc84e")
 
-[node name="EnemySpawner" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="EnemySpawner" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("spawn_points")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.297, 0, -170.984)
 script = ExtResource("12_cbp6q")
 possible_enemies = Array[PackedScene]([ExtResource("8_2o6r5"), ExtResource("1_4h6ng"), ExtResource("18_o3ebs")])
 enemy_scene = ExtResource("8_2o6r5")
+spawn_points = [NodePath("../OmniLight3D/EnemySpawn"), NodePath("../OmniLight3D2/EnemySpawn"), NodePath("../OmniLight3D3/EnemySpawn")]
 distance_min = 80
 distance_max = 90
 metadata/_custom_type_script = "uid://dkuoghm2y5uub"
@@ -1068,6 +1069,9 @@ light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
 
+[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.1468, 0)
+
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.571, 18.4094, -100.204)
 light_color = Color(0.783985, 0, 0.130501, 1)
@@ -1075,12 +1079,18 @@ light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
 
+[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.4222, 0)
+
 [node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.525, 13.7801, -109.659)
 light_color = Color(0.783985, 0, 0.130501, 1)
 light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
+
+[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.7374, 0)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("5_k3n1d")
