@@ -15,8 +15,10 @@ var enabled := false
 #Checks how sensitive the mouse is
 var mouse_sensitivity := 0.000002
 
-var cooldown = 15
+var cooldown = 15.0
+
 var last_shot_time := 0.0
+
 
 @onready var camera : Node3D = %CameraParent
 @onready var gun : Gun = %Gun
@@ -24,6 +26,7 @@ var last_shot_time := 0.0
 @onready var menu = %Control
 @onready var intro = %AnimationIntro
 @onready var startScreen = %IntroCamera
+@onready var grenade_cooldown = %Cooldown
 
 func _ready() -> void:
 	intro.play("Black_in")
@@ -42,6 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotation_degrees.x = clampf(camera.rotation_degrees.x, -rotation_limit_upwards, rotation_limit_downwards)
 
 func _process(delta: float) -> void:
+	grenade_cooldown.value = cooldown
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
@@ -97,5 +101,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_grenade_cooldown_timeout() -> void:
-	cooldown += 1
+	cooldown += 0.05
 	 # Replace with function body.

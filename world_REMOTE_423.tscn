@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=4 uid="uid://2rascp5n01m0"]
+[gd_scene load_steps=89 format=4 uid="uid://1mx4l63ygi3r"]
 
 [ext_resource type="PackedScene" uid="uid://etm15qfqslbw" path="res://scenes/enemy_flying_ant.tscn" id="1_4h6ng"]
 [ext_resource type="Script" uid="uid://cf0lvo8yhhh0l" path="res://src/player.gd" id="1_f3sb7"]
@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://b35kluvjjnesa" path="res://box_container.gd" id="9_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dlcqpdcblgxm" path="res://Models/rectangles texture.fbx" id="9_qktwf"]
 [ext_resource type="PackedScene" uid="uid://die5mv280d38s" path="res://Models/Pillers.fbx" id="10_mc2jv"]
-[ext_resource type="Material" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
+[ext_resource type="Material" uid="uid://dkh1lhbt7a33c" path="res://Models/aiStandardSurface2.tres" id="10_qktwf"]
 [ext_resource type="Script" uid="uid://d0cu8lhdn7eyl" path="res://src/flame.gd" id="10_wjb0r"]
 [ext_resource type="Texture2D" uid="uid://di2nylg3vxnmu" path="res://Models/Terrain/textures/T_smoke_flipbook.png" id="11_ikiii"]
 [ext_resource type="Script" uid="uid://dkuoghm2y5uub" path="res://src/enemy_spawner.gd" id="12_cbp6q"]
@@ -31,9 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://dqxi1f3j164vx" path="res://scenes/enemy_big_ant.tscn" id="18_o3ebs"]
 [ext_resource type="Script" uid="uid://csc8fkq6yfwjh" path="res://timer_node.gd" id="19_cbp6q"]
 [ext_resource type="AudioStream" uid="uid://bs0821cqkxxld" path="res://Audio/hiveslayer_music.wav" id="21_bc84e"]
-[ext_resource type="FontFile" uid="uid://jj3qqmfvqtgq" path="res://Models/Textures/MatrixtypeDisplay-9MyE5.ttf" id="24_jjr1n"]
-[ext_resource type="Texture2D" uid="uid://bam2wcfnap3oy" path="res://Models/Textures/progress-bar-circle.png" id="26_o3ebs"]
-[ext_resource type="Texture2D" uid="uid://dls53372dseok" path="res://Models/Textures/progress-bar-frame.png" id="27_k83mh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
 radius = 0.25
@@ -661,7 +658,6 @@ libraries = {
 }
 
 [node name="GrenadeCooldown" type="Timer" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
-wait_time = 0.05
 autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Player/CameraParent/Camera/Gun"]
@@ -991,7 +987,7 @@ shape = SubResource("ConcavePolygonShape3D_6ah6f")
 
 [node name="Flame" type="Node3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(0.78826, 0, 0, 0, 0.78826, 0, 0, 0, 0.78826, 162.182, 13.4021, -170.407)
+transform = Transform3D(0.78826, 0, 0, 0, 0.78826, 0, 0, 0, 0.78826, 162.182, 30.5627, -170.407)
 script = ExtResource("10_wjb0r")
 take_damage_sound = ExtResource("13_4h6ng")
 
@@ -1001,7 +997,7 @@ material_override = SubResource("StandardMaterial3D_ic0uy")
 mesh = SubResource("CapsuleMesh_k3n1d")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Flame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.8742, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.5953, 0)
 light_color = Color(0.630407, 0.923623, 1, 1)
 light_energy = 16.0
 light_specular = 0.039
@@ -1013,7 +1009,7 @@ omni_attenuation = 0.44
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Flame/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.839, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.3011, 0)
 shape = SubResource("CapsuleShape3D_mc2jv")
 
 [node name="IntroCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
@@ -1034,12 +1030,11 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_26xuy")
 draw_pass_1 = SubResource("QuadMesh_bc84e")
 
-[node name="EnemySpawner" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("spawn_points")]
+[node name="EnemySpawner" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.297, 0, -170.984)
 script = ExtResource("12_cbp6q")
 possible_enemies = Array[PackedScene]([ExtResource("8_2o6r5"), ExtResource("1_4h6ng"), ExtResource("18_o3ebs")])
 enemy_scene = ExtResource("8_2o6r5")
-spawn_points = [NodePath("../OmniLight3D/EnemySpawn"), NodePath("../OmniLight3D2/EnemySpawn"), NodePath("../OmniLight3D3/EnemySpawn")]
 distance_min = 80
 distance_max = 90
 metadata/_custom_type_script = "uid://dkuoghm2y5uub"
@@ -1069,9 +1064,6 @@ light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
 
-[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.1468, 0)
-
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.571, 18.4094, -100.204)
 light_color = Color(0.783985, 0, 0.130501, 1)
@@ -1079,18 +1071,12 @@ light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
 
-[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.4222, 0)
-
 [node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.525, 13.7801, -109.659)
 light_color = Color(0.783985, 0, 0.130501, 1)
 light_energy = 16.0
 omni_range = 36.229
 omni_attenuation = 0.268
-
-[node name="EnemySpawn" type="Node3D" parent="SubViewportContainer/SubViewport/OmniLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.7374, 0)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("5_k3n1d")
@@ -1151,11 +1137,8 @@ offset_right = 207.5
 offset_bottom = 145.0
 grow_horizontal = 2
 theme = SubResource("Theme_hiqwa")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 80
 text = "Hivemind"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Control/CanvasLayer"]
 anchors_preset = 8
@@ -1178,8 +1161,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_2u3nc")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 30
 text = "Sound"
 
 [node name="Master" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
@@ -1194,8 +1175,6 @@ script = ExtResource("14_2u3nc")
 [node name="Label2" type="Label" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_ikiii")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 30
 text = "Mouse sensitiviti"
 
 [node name="HSlider2" type="HSlider" parent="Control/CanvasLayer/CenterContainer/VBoxContainer"]
@@ -1211,8 +1190,6 @@ script = ExtResource("8_ic0uy")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 25
 text = "return"
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/CanvasLayer"]
@@ -1225,7 +1202,6 @@ offset_top = -74.0
 offset_right = 266.0
 offset_bottom = 75.0
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
 alignment = 2
 vertical = true
 script = ExtResource("9_k3n1d")
@@ -1234,15 +1210,11 @@ script = ExtResource("9_k3n1d")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.25
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 20
 text = "Start"
 
 [node name="Button2" type="Button" parent="Control/CanvasLayer/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 20
 text = "Settings"
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
@@ -1280,43 +1252,10 @@ offset_left = -275.0
 offset_bottom = 75.0
 grow_horizontal = 0
 theme = SubResource("Theme_cbp6q")
-theme_override_fonts/font = ExtResource("24_jjr1n")
-theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="TimerNode/CanvasTime"]
 unique_name_in_owner = true
-
-[node name="GrenadeCooldown" type="Control" parent="TimerNode/CanvasTime"]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="Cooldown" type="TextureProgressBar" parent="TimerNode/CanvasTime/GrenadeCooldown"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -172.0
-offset_right = 135.0
-offset_bottom = -44.0
-grow_vertical = 0
-scale = Vector2(1.2, 1.2)
-max_value = 15.0
-step = 0.1
-value = 5.0
-fill_mode = 4
-texture_under = ExtResource("26_o3ebs")
-texture_over = ExtResource("27_k83mh")
-texture_progress = ExtResource("26_o3ebs")
-tint_under = Color(0.07, 0.07, 0.07, 0.576471)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bc84e")
