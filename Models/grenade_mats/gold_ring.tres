@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dfwj0lj878nqt"]
+
+[resource]
+resource_name = "gold_ring"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.931023, 0.909912, 0.689803, 1)
+emission_enabled = true

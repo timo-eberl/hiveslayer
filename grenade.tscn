@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0gyej40ykdb1"]
+[gd_scene load_steps=13 format=3 uid="uid://b0gyej40ykdb1"]
 
 [ext_resource type="Script" uid="uid://cg3ig5df8e07n" path="res://grenade.gd" id="1_24g56"]
 [ext_resource type="Script" uid="uid://f0bnqs0bb7eq" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="1_gju2f"]
 [ext_resource type="AudioStream" uid="uid://drgjx7gap5l8q" path="res://Audio/sound_truth_bomb.wav" id="2_o1udh"]
-[ext_resource type="PackedScene" path="res://explosion.tscn" id="3_ga5sg"]
+[ext_resource type="PackedScene" uid="uid://crlbodtkjhpxb" path="res://Models/Grenade.fbx" id="3_aeyyv"]
+[ext_resource type="PackedScene" uid="uid://bg3nt44ym7iau" path="res://explosion.tscn" id="3_ga5sg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gju2f"]
 bounce = 0.4
@@ -41,8 +42,15 @@ script = ExtResource("1_24g56")
 explosionSound = ExtResource("2_o1udh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_24g56")
 mesh = SubResource("SphereMesh_ga5sg")
+
+[node name="Grenade" parent="." instance=ExtResource("3_aeyyv")]
+transform = Transform3D(38.775, 0, 0, 0, 38.775, 0, 0, 0, 38.775, 0, -0.439532, 0)
+
+[node name="pTorus1" parent="Grenade" index="1"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
@@ -68,6 +76,7 @@ metadata/_custom_type_script = "uid://f0bnqs0bb7eq"
 
 [node name="BlastRadius" type="Area3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlastRadius"]
 shape = SubResource("SphereShape3D_ga5sg")
@@ -78,3 +87,5 @@ autostart = true
 [node name="Explosion" parent="." instance=ExtResource("3_ga5sg")]
 
 [connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]
+
+[editable path="Grenade"]

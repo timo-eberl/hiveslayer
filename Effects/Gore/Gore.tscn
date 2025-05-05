@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://cvgxpv4v17ve"]
 
-[ext_resource type="Script" uid="uid://dxgcthyiuei12" path="res://Effects/Gore/gore.gd" id="1_k53ux"]
+[ext_resource type="Script" uid="uid://clxaoq21kqkcl" path="res://src/destroy_timer.gd" id="1_8qv5j"]
 [ext_resource type="Texture2D" uid="uid://w6wfgg46mdbw" path="res://Effects/BloodSplash/blood_drop.png" id="2_8qv5j"]
 
 [sub_resource type="Curve" id="Curve_xyw78"]
@@ -100,7 +100,8 @@ collision_mask = 0
 gravity_scale = 3.0
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_k53ux")
+script = ExtResource("1_8qv5j")
+lifetimeSeconds = 3.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698801, 0, 0)
