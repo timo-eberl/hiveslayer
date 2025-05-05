@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://etm15qfqslbw"]
+
+[ext_resource type="Script" uid="uid://n8u8j2i8yt14" path="res://enemy.gd" id="1_ero26"]
+[ext_resource type="PackedScene" uid="uid://cvgxpv4v17ve" path="res://Effects/Gore/Gore.tscn" id="2_2u6qy"]
+[ext_resource type="PackedScene" uid="uid://dn2kiwx2ckkky" path="res://Effects/BloodSplash/bloodSplash.tscn" id="3_hc7t7"]
+[ext_resource type="AudioStream" uid="uid://bxgnrn8ojh5n6" path="res://Audio/sound_kill_enemy.wav" id="4_styui"]
+[ext_resource type="PackedScene" uid="uid://bgyypsqkhulj2" path="res://Models/flying ant clips.fbx" id="5_ero26"]
+[ext_resource type="Script" uid="uid://i2x287rvw0vb" path="res://src/play_fly_animation.gd" id="6_2u6qy"]
+[ext_resource type="AudioStream" uid="uid://d0sp178jr8a7g" path="res://Audio/sound_hit_enemy.wav" id="7_bt0du"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hc7t7"]
+radius = 0.633257
+height = 2.35137
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("takeDamageSound")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+collision_layer = 2
+script = ExtResource("1_ero26")
+movement_speed = 4.0
+movement_speed_variance = 0.5
+gore_scene = ExtResource("2_2u6qy")
+splash_scene = ExtResource("3_hc7t7")
+takeDamageSound = NodePath("TakeDamageSound")
+deathSound = ExtResource("4_styui")
+max_health = 1.0
+
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83839, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+use_3d_avoidance = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.82285, -3.95782e-09)
+shape = SubResource("CapsuleShape3D_hc7t7")
+
+[node name="flying ant clips" parent="." instance=ExtResource("5_ero26")]
+transform = Transform3D(-1.01848e-06, 0, 23.3, 0, 23.3, 0, -23.3, 0, -1.01848e-06, -1.21549e-08, 1.18942, -0.278072)
+
+[node name="pCube6" parent="flying ant clips/group3" index="0"]
+transform = Transform3D(0.851318, -0.0862348, -0.477204, -0.15494, 0.302388, -0.625703, 0.50125, 0.23993, 0.617068, -0.0269055, 0.0300596, 0.0109327)
+
+[node name="pCube5" parent="flying ant clips/group3" index="1"]
+transform = Transform3D(0.769519, 0.252472, 0.0197747, -0.199, 0.106435, -0.94233, -0.606827, 0.285256, 0.3341, -0.00953684, 0.0300596, 0.00150564)
+
+[node name="pCube4" parent="flying ant clips/group3" index="2"]
+transform = Transform3D(0.73561, 0.264019, -0.11535, -0.530541, 0.182668, -0.710798, -0.421193, 0.231014, 0.693874, -0.0048448, 0.0300596, 0.000923588)
+
+[node name="pCube3" parent="flying ant clips/group3" index="3"]
+transform = Transform3D(1, 2.7355e-08, -9.21568e-14, -2.73487e-08, 0.999768, -0.0352361, -5.89545e-10, 0.0215537, 1.63443, 0.00340193, 0.0287432, -0.0164119)
+
+[node name="pCube2" parent="flying ant clips/group3" index="4"]
+transform = Transform3D(1, 2.7355e-08, -9.21568e-14, -2.73487e-08, 0.999768, -0.0352361, -5.89545e-10, 0.0215537, 1.63443, 0.00340193, 0.028361, 0.0177452)
+
+[node name="pSphere2" parent="flying ant clips/group3" index="5"]
+transform = Transform3D(0.669364, 8.92732e-09, 7.45291e-10, -8.90826e-09, 0.669194, -0.0150829, -9.46263e-10, 0.0150829, 0.669194, -0.015256, 0.0238607, -6.93889e-20)
+
+[node name="pSphere1" parent="flying ant clips/group3" index="6"]
+transform = Transform3D(1, -7.32036e-09, 5.6357e-10, 7.34202e-09, 0.99705, -0.0767594, -5.55112e-17, 0.0767594, 0.99705, 0.00665842, 0.0251151, 5.55111e-19)
+
+[node name="pasted__pCube9" parent="flying ant clips/group/pasted__group3" index="0"]
+transform = Transform3D(0.942084, 0.072799, 0.280358, -0.332773, 0.161788, 0.849674, 0.0417085, -0.353506, 0.446603, -0.00953684, 0.0300596, -0.00426574)
+
+[node name="pasted__pCube7" parent="flying ant clips/group4/pasted__group32" index="0"]
+transform = Transform3D(0.886088, 0.0211484, 0.460423, -0.354112, 0.284398, 0.59799, -0.299087, -0.274065, 0.656063, -0.00524275, 0.0300596, -0.000923587)
+
+[node name="pasted__pCube8" parent="flying ant clips/group4/pasted__group32" index="1"]
+transform = Transform3D(0.665863, -0.175136, 0.600468, -0.195839, 0.266143, 0.713357, -0.719912, -0.234386, 0.361331, -0.0269055, 0.0300596, -0.0109327)
+
+[node name="pCube7" parent="flying ant clips/pCube1" index="0"]
+transform = Transform3D(4.09585, 0.120289, -0.245749, -0.960864, 0.304967, 0.784719, 1.29453, -0.154229, 1.36, -0.0137144, 0.0171383, -0.00827888)
+
+[node name="pCube8" parent="flying ant clips/pCube1" index="1"]
+transform = Transform3D(4.08322, -0.110341, -0.343514, -0.957903, -0.330114, 0.556064, -1.33594, -0.10055, -1.44864, -0.0144774, 0.0149927, 0.00601762)
+
+[node name="AnimationPlayer" parent="flying ant clips" index="4"]
+speed_scale = 1.5
+script = ExtResource("6_2u6qy")
+
+[node name="TakeDamageSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_bt0du")
+
+[editable path="flying ant clips"]
